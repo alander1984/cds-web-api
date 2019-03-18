@@ -25,3 +25,6 @@
 
 Вызов методов, осуществляется, через точку вызова CDSAPI. Например, для метода, опубликованного в файле /src/api/routes.js будет доступно как: 'CDSAPI.Routes.sendGetRoute'
 Ваш файл с методами должен быть прописан в webpack.config.js в секции app
+
+
+npm run build --prefix ${current.project.path}

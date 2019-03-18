@@ -9,5 +9,8 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     libraryTarget: 'var',
     library: 'CDSAPI'
+  },
+  node: {
+    fs: 'empty'
   }
 };
