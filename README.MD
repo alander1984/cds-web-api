@@ -14,8 +14,14 @@
 Команда для генерации исходных кодов JS для работы с сервисами
 ==============================================================
 
-protoc -I=${current.project.path}/src/proto $(find ${current.project.path}/src/proto -iname "*.proto") --js_out=import_style=commonjs:${current.project.path}/src/grpc-generated --grpc-web_out=import_style=commonjs,mode=grpcwebtext:${current.project.path}/src/grpc-generated
+    protoc -I=${current.project.path}/src/proto $(find ${current.project.path}/src/proto -iname "*.proto") --js_out=import_style=commonjs:${current.project.path}/src/grpc-generated --grpc-web_out=import_style=commonjs,mode=grpcwebtext:${current.project.path}/src/grpc-generated
 
 Установка grpcc
 ===============
-sudo npm install -g grpcc
+    sudo npm install -g grpcc
+
+Использование API в вашем JS
+============================
+
+Вызов методов, осуществляется, через точку вызова CDSAPI. Например, для метода, опубликованного в файле /src/api/routes.js будет доступно как: 'CDSAPI.Routes.sendGetRoute'
+Ваш файл с методами должен быть прописан в webpack.config.js в секции app
