@@ -12,6 +12,10 @@
         });  
     }
 }*/
+require('./api/routes.js');
 
 
-
+module.exports = {
+  ...require('./api/routes.js'),
+  ...require('./api/authorization.js'),
+ }
