@@ -10,6 +10,9 @@ module.exports = {
     libraryTarget: 'var',
     library: 'CDSAPI'
   },
+  externals: {
+  'Config': JSON.stringify(require('./config/default.json'))
+  },
   node: {
     fs: 'empty'
   }

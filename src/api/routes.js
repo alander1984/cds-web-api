@@ -3,7 +3,9 @@
 
 const {RouteRequest, Route} = require('../grpc-generated/routes_pb.js');
 const {RouteServiceClient} = require('../grpc-generated/routes_grpc_web_pb.js');
-var client = new RouteServiceClient("http://192.168.63.14:34288");
+var Config = require('Config');
+var client = new RouteServiceClient(Config.backendAPITestEndpoint);
+
 
 
 module.exports = {

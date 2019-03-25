@@ -1,16 +1,16 @@
 const {Empty, Permission, PermissionAllResponse, EntityCreateResponse, EntityIdRequest, EntityDeleteResponse} = require('../grpc-generated/AuthEntity_pb.js');
-
+var Config = require('Config');
 const {PermissionReadAllServiceClient} = require('../grpc-generated/AuthEntity_grpc_web_pb.js');
-var clientAllPermissions = new PermissionReadAllServiceClient("http://192.168.1.105:34871");
+var clientAllPermissions = new PermissionReadAllServiceClient(Config.backendAPITestEndpoint);
 
 const {PermissionCreateOrUpdateServiceClient} = require('../grpc-generated/AuthEntity_grpc_web_pb.js');
-var clientCreatePermission = new PermissionCreateOrUpdateServiceClient("http://192.168.63.14:8040");
+var clientCreatePermission = new PermissionCreateOrUpdateServiceClient(Config.backendAPITestEndpoint);
 
 const {PermissionReadByIdServiceClient} = require('../grpc-generated/AuthEntity_grpc_web_pb.js');
-var clientGetPermission = new PermissionReadByIdServiceClient("http://192.168.63.14:8040");
+var clientGetPermission = new PermissionReadByIdServiceClient(Config.backendAPITestEndpoint);
 
 const {PermissionDeleteByIdServiceClient} = require('../grpc-generated/AuthEntity_grpc_web_pb.js');
-var clientDeletePermission = new PermissionDeleteByIdServiceClient("http://192.168.63.14:8040");
+var clientDeletePermission = new PermissionDeleteByIdServiceClient(Config.backendAPITestEndpoint);
 
 module.exports = {
   Permissions: {

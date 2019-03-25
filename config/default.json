@@ -1,3 +1,3 @@
 {
-    "backendAPIEndpoint": "http://192.168.63.14:34871"
+    "backendAPITestEndpoint": "http://192.168.1.105:34871"
 }
