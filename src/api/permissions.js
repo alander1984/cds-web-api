@@ -22,10 +22,16 @@ module.exports = {
         	}); 
 	   });
     },
-    createOrUpdatePermission: function (id) {
+    createOrUpdatePermission: function (permission) {
     	return new Promise((resolve, reject) => {
         	var request = new Permission();
-        	request.setId(id);
+        	//request = permission;
+        	if (permission.id) request.setId(permission.id);
+        	request.setCode(permission.code);
+        	request.setName(permission.name);
+        	console.log("REQUEST.ID  " + request.getId());
+        	console.log("REQUEST.CODE  " + request.getCode());
+        	console.log("REQUEST.NAME  " + request.getName());
         	clientCreatePermission.createOrUpdatePermission(request, {}, (err, response) => {
       			resolve(response);
         	}); 
@@ -44,6 +50,7 @@ module.exports = {
     	return new Promise((resolve, reject) => {
         	var request = new EntityIdRequest();
         	request.setId(id);
+        	console.log("REQUEST.DELETE.ID  " + request.getId());
         	clientDeletePermission.deleteByIdPermission(request, {}, (err, response) => {
       			resolve(response);
         	}); 
