@@ -2,7 +2,8 @@ const path = require('path');
 
 module.exports = {
   entry: { 
-    app: ['./src/main.js','./src/api/routes.js', './src/api/permissions.js']
+    app: ['./src/main.js']
+  },
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
