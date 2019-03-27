@@ -12,8 +12,8 @@ module.exports = {
                     request.setPass(pass);
                     request.setClientId(clientId);
                     request.setGrantType(grantType)
-                    client.getToken(request, {}, (err, route) => {
-                    resolve(route); });
+                    client.getToken(request, {}, (err, token) => {
+                    resolve(token); });
             });
         }
     }
