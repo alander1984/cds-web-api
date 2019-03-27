@@ -18,7 +18,19 @@ module.exports = {
     	return new Promise((resolve, reject) => {
         	var request = new Empty();
         	clientAllPermissions.readAllPermission(request, {}, (err, permissions) => {
-      			resolve(permissions);
+        	    var s = permissions.toString().split(',');
+        	    var listPermissions = [];
+                console.log("PERMISSION:  " + s);
+             
+                 for(var i=0; i < s.length; i += 3){
+                     var permission = new Object();
+                     permission.id = s[i];
+                     permission.code = s[i+1];
+                     permission.name = s[i+2];
+                     listPermissions.push(permission);
+                 }
+            
+      			resolve(listPermissions);
         	}); 
 	   });
     },
