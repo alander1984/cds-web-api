@@ -20,3 +20,4 @@ module.exports = {
   ...require('./api/authorization.js'),
   ...require('./api/token.js'),
  }
+ 

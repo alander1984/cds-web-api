@@ -1,4 +1,4 @@
 {
     "backendAPITestEndpoint": "http://192.168.1.105:34871",
-    "authAPITestEndpoint" : "http://192.168.63.152:8088"
+    "authAPITestEndpoint" : "http://192.168.63.159:8088"
 }
