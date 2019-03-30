@@ -22,3 +22,4 @@ module.exports = {
   ...require('./api/roles.js'),
   ...require('./api/permissions.js'),
  }
+
