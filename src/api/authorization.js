@@ -1,7 +1,7 @@
 const {Empty, UserAllResponse} = require('../grpc-generated/AuthEntity_pb.js');
-const {UserReadAllServiceClient} = require('../grpc-generated/AuthEntity_grpc_web_pb.js');
+const {UserServiceClient} = require('../grpc-generated/AuthEntity_grpc_web_pb.js');
 var Config = require('Config');
-var client = new UserReadAllServiceClient(Config.backendAPITestEndpoint);
+var client = new UserServiceClient(Config.backendAPITestEndpoint);
 
 module.exports = {
   Authorization: {

@@ -1,35 +1,25 @@
 const {Empty, Permission, PermissionAllResponse, EntityCreateResponse, EntityIdRequest, EntityDeleteResponse} = require('../grpc-generated/AuthEntity_pb.js');
 var Config = require('Config');
-const {PermissionReadAllServiceClient} = require('../grpc-generated/AuthEntity_grpc_web_pb.js');
-var clientAllPermissions = new PermissionReadAllServiceClient(Config.backendAPITestEndpoint);
-
-const {PermissionCreateOrUpdateServiceClient} = require('../grpc-generated/AuthEntity_grpc_web_pb.js');
-var clientCreatePermission = new PermissionCreateOrUpdateServiceClient(Config.backendAPITestEndpoint);
-
-const {PermissionReadByIdServiceClient} = require('../grpc-generated/AuthEntity_grpc_web_pb.js');
-var clientGetPermission = new PermissionReadByIdServiceClient(Config.backendAPITestEndpoint);
-
-const {PermissionDeleteByIdServiceClient} = require('../grpc-generated/AuthEntity_grpc_web_pb.js');
-var clientDeletePermission = new PermissionDeleteByIdServiceClient(Config.backendAPITestEndpoint);
+const {PermissionServiceClient} = require('../grpc-generated/AuthEntity_grpc_web_pb.js');
+var clientPermission = new PermissionServiceClient(Config.backendAPITestEndpoint);
 
 module.exports = {
   Permissions: {
     sendAllPermissions: function () {
     	return new Promise((resolve, reject) => {
         	var request = new Empty();
-        	clientAllPermissions.readAllPermission(request, {}, (err, permissions) => {
-        	    var s = permissions.toString().split(',');
+        	clientPermission.readAllPermission(request, {}, (err, permissions) => {
         	    var listPermissions = [];
-                console.log("PERMISSION:  " + s);
-             
-                 for(var i=0; i < s.length; i += 3){
-                     var permission = new Object();
-                     permission.id = s[i];
-                     permission.code = s[i+1];
-                     permission.name = s[i+2];
-                     listPermissions.push(permission);
-                 }
-            
+                var _permissions = permissions.array[0];
+                _permissions.forEach(function(item, index, _permissions){ 
+                    var permission = new Object();
+                    let id = {id: item[0]};
+                    let code = {code: item[1]};
+                    let name = {name: item[2]};
+                    Object.assign(permission, id, code, name);
+                    console.log("PERMISSION_NAME :  " + permission.name);
+                    listPermissions.push(permission);
+                }); 
       			resolve(listPermissions);
         	}); 
 	   });
@@ -44,7 +34,7 @@ module.exports = {
         	console.log("REQUEST.ID  " + request.getId());
         	console.log("REQUEST.CODE  " + request.getCode());
         	console.log("REQUEST.NAME  " + request.getName());
-        	clientCreatePermission.createOrUpdatePermission(request, {}, (err, response) => {
+        	clientPermission.createOrUpdatePermission(request, {}, (err, response) => {
       			resolve(response);
         	}); 
 	   });
@@ -53,7 +43,7 @@ module.exports = {
     	return new Promise((resolve, reject) => {
         	var request = new EntityIdRequest();
         	request.setId(id);
-        	clientGetPermission.readByIdPermission(request, {}, (err, permission) => {
+        	clientPermission.readByIdPermission(request, {}, (err, permission) => {
       			resolve(permission);
         	}); 
 	   });
@@ -63,7 +53,7 @@ module.exports = {
         	var request = new EntityIdRequest();
         	request.setId(id);
         	console.log("REQUEST.DELETE.ID  " + request.getId());
-        	clientDeletePermission.deleteByIdPermission(request, {}, (err, response) => {
+        	clientPermission.deleteByIdPermission(request, {}, (err, response) => {
       			resolve(response);
         	}); 
 	   });
