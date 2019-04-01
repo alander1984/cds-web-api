@@ -39,14 +39,12 @@ module.exports = {
     createOrUpdateRole: function (role) {
     	return new Promise((resolve, reject) => {
         	var request = new Role();
-        	//request = permission;
-        	console.log("РОЛЬ: " + JSON.stringify(role));
         	if (role.id) request.setId(role.id);
         	request.setCode(role.code);
         	request.setName(role.name);
-        	console.log("REQUEST.ID  " + request.getId());
-        	console.log("REQUEST.CODE  " + request.getCode());
-        	console.log("REQUEST.NAME  " + request.getName());
+        	//console.log("REQUEST.ID  " + request.getId());
+        	//console.log("REQUEST.CODE  " + request.getCode());
+        	//console.log("REQUEST.NAME  " + request.getName());
         	var m = [];
         	var p = role.permissions;
         	
@@ -59,7 +57,6 @@ module.exports = {
         	});
         	
         	request.setPermissionsList(m);
-        	console.log("REQUEST.PERMISSIONS  ");
         	clientRole.createOrUpdateRole(request, {}, (err, response) => {
       			resolve(response);
         	}); 
