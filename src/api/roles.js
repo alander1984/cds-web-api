@@ -10,28 +10,25 @@ module.exports = {
         	var request = new Empty();
         	clientRole.readAllRole(request, {}, (err, roles) => {
         	    var listRoles = [];
-                var _roles = roles.array[0];
-                _roles.forEach(function(item, index, _roles){
-                    
-                    var role = new Object();
-                    let id = {id: item[0]};
-                    let code = {code: item[1]};
-                    let name = {name: item[2]};
+        	    var r = roles.getRolesList();
+        	    r.forEach(function(item, index, r){
+        	        var role = new Object();
+                    role.id = item.getId();
+                    role.code = item.getCode();
+                    role.name = item.getName();
                     role.permissions = [];
-                    let _permissions = item[3];
+                    
+                    let _permissions = item.getPermissionsList();
                     _permissions.forEach(function(itemp, index, _permissions){
                         let permission = new Object();
-                        let id_p = {id: itemp[0]};
-                        let code_p = {code: itemp[1]};
-                        let name_p = {name: itemp[2]};
-                        Object.assign(permission, id_p, code_p, name_p);
+                        permission.id = itemp.getId();
+                        permission.code = itemp.getCode();
+                        permission.name = itemp.getName();
                         //console.log("Permission :  " + "id: " + permission.id + "  name: " + permission.name);
                         role.permissions.push(permission);
-                        //console.log("PermissionS :  " + role.permissions[index].name);
                     });
-                    Object.assign(role, id, code, name);
                     listRoles.push(role);
-                });
+        	    });
       			resolve(listRoles);
         	}); 
 	   });
