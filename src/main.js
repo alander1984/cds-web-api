@@ -21,5 +21,6 @@ module.exports = {
   ...require('./api/token.js'),
   ...require('./api/roles.js'),
   ...require('./api/permissions.js'),
+  ...require('./api/driver.js'),
  }
 
