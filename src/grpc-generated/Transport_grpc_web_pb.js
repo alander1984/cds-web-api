@@ -11,6 +11,8 @@
 const grpc = {};
 grpc.web = require('grpc-web');
 
+
+var common_pb = require('./common_pb.js')
 const proto = {};
 proto.transportservice = require('./Transport_pb.js');
 
@@ -187,12 +189,12 @@ proto.transportservice.DriverServicePromiseClient.prototype.readByIdDriver =
 /**
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.transportservice.Empty,
+ *   !proto.Empty,
  *   !proto.transportservice.DriverAllResponse>}
  */
 const methodInfo_DriverService_readAllDrivers = new grpc.web.AbstractClientBase.MethodInfo(
   proto.transportservice.DriverAllResponse,
-  /** @param {!proto.transportservice.Empty} request */
+  /** @param {!proto.Empty} request */
   function(request) {
     return request.serializeBinary();
   },
@@ -201,7 +203,7 @@ const methodInfo_DriverService_readAllDrivers = new grpc.web.AbstractClientBase.
 
 
 /**
- * @param {!proto.transportservice.Empty} request The
+ * @param {!proto.Empty} request The
  *     request proto
  * @param {!Object<string, string>} metadata User defined
  *     call metadata
@@ -222,7 +224,7 @@ proto.transportservice.DriverServiceClient.prototype.readAllDrivers =
 
 
 /**
- * @param {!proto.transportservice.Empty} request The
+ * @param {!proto.Empty} request The
  *     request proto
  * @param {!Object<string, string>} metadata User defined
  *     call metadata
@@ -469,12 +471,12 @@ proto.transportservice.VehicleServicePromiseClient.prototype.readByIdVehicle =
 /**
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.transportservice.Empty,
+ *   !proto.Empty,
  *   !proto.transportservice.VehicleAllResponse>}
  */
 const methodInfo_VehicleService_readAllVehicles = new grpc.web.AbstractClientBase.MethodInfo(
   proto.transportservice.VehicleAllResponse,
-  /** @param {!proto.transportservice.Empty} request */
+  /** @param {!proto.Empty} request */
   function(request) {
     return request.serializeBinary();
   },
@@ -483,7 +485,7 @@ const methodInfo_VehicleService_readAllVehicles = new grpc.web.AbstractClientBas
 
 
 /**
- * @param {!proto.transportservice.Empty} request The
+ * @param {!proto.Empty} request The
  *     request proto
  * @param {!Object<string, string>} metadata User defined
  *     call metadata
@@ -504,7 +506,7 @@ proto.transportservice.VehicleServiceClient.prototype.readAllVehicles =
 
 
 /**
- * @param {!proto.transportservice.Empty} request The
+ * @param {!proto.Empty} request The
  *     request proto
  * @param {!Object<string, string>} metadata User defined
  *     call metadata
@@ -751,12 +753,12 @@ proto.transportservice.TransportCompanyServicePromiseClient.prototype.readByIdTr
 /**
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.transportservice.Empty,
+ *   !proto.Empty,
  *   !proto.transportservice.TransportCompanyAllResponse>}
  */
 const methodInfo_TransportCompanyService_readAllTransportCompanies = new grpc.web.AbstractClientBase.MethodInfo(
   proto.transportservice.TransportCompanyAllResponse,
-  /** @param {!proto.transportservice.Empty} request */
+  /** @param {!proto.Empty} request */
   function(request) {
     return request.serializeBinary();
   },
@@ -765,7 +767,7 @@ const methodInfo_TransportCompanyService_readAllTransportCompanies = new grpc.we
 
 
 /**
- * @param {!proto.transportservice.Empty} request The
+ * @param {!proto.Empty} request The
  *     request proto
  * @param {!Object<string, string>} metadata User defined
  *     call metadata
@@ -786,7 +788,7 @@ proto.transportservice.TransportCompanyServiceClient.prototype.readAllTransportC
 
 
 /**
- * @param {!proto.transportservice.Empty} request The
+ * @param {!proto.Empty} request The
  *     request proto
  * @param {!Object<string, string>} metadata User defined
  *     call metadata
