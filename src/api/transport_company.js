@@ -15,14 +15,25 @@ module.exports = {
           var p = transportCompanies.getTransportcompaniesList();
           p.forEach(function(item, index, p){
             let  tc = new Object();
-            tc.id = item.id;
-            tc.code = item.code;
-            tc.name = item.name;
+            tc.id = item.getId();
+            tc.code = item.getCode();
+            tc.name = item.getName();
+            tc.vehicles = [];
+
+            let _vehicles = item.getVehiclesList();
+            _vehicles.forEach(function(item, index, _vehicles){
+              let vehicle = new Object();
+              vehicle.id = item.getId();
+              vehicle.registrationNumber = item.getRegistrationnumber();
+              vehicle.model = item.getModel();
+              vehicle.tonnage = item.getTonnage();
+              vehicle.capacity = item.getCapacity();
+              tc.vehicles.push(vehicle);
+            });
 
             console.log("Item of getTransportCompaniesList - " + item);
             listTransportCompanies.push(tc);
           });
-          console.log("5");
           resolve(listTransportCompanies);
         });
       });
@@ -35,9 +46,6 @@ module.exports = {
         if (transportCompany.id) request.setId(transportCompany.id);
         request.setName(transportCompany.name);
         request.setCode(transportCompany.code);
-        // console.log("REQUEST.NAME " + request.getName());
-        // console.log("REQUEST.SURNAME  " + request.getSurname());
-        // console.log("REQUEST.PATRONYMIC  " + request.getPatronymic());
         clientTransportCompany.createOrUpdateTransportCompany(request, {}, (err, response) => {
           resolve(response);
         });
