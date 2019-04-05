@@ -1,4 +1,5 @@
-const {Empty, Vehicle, VehicleAllResponse, EntityCreateResponse, EntityIdRequest, EntityDeleteResponse} = require('../grpc-generated/Transport_pb');
+const {Vehicle, VehicleAllResponse, EntityCreateResponse, EntityIdRequest, EntityDeleteResponse} = require('../grpc-generated/Transport_pb');
+const {Empty} = require('../grpc-generated/common_pb.js');
 var Config = require('Config');
 const {VehicleServiceClient} = require('../grpc-generated/Transport_grpc_web_pb');
 var clientVehicle = new VehicleServiceClient(Config.backendRFPEndpoint);
@@ -11,7 +12,7 @@ module.exports = {
         var request = new Empty();
         clientVehicle.readAllVehicles(request, {}, (err, vehicles) => {
           var listVehicles = [];
-          var p = vehicles.getDriversList();
+          var p = vehicles.getVehiclesList();
           p.forEach(function(item, index, p){
             console.log("Item of getVehiclesList - " + item);
             listVehicles.push(item);
@@ -33,7 +34,7 @@ module.exports = {
         // console.log("REQUEST.NAME " + request.getName());
         // console.log("REQUEST.SURNAME  " + request.getSurname());
         // console.log("REQUEST.PATRONYMIC  " + request.getPatronymic());
-        clientVehicle.createOrUpdateDriver(request, {}, (err, response) => {
+        clientVehicle.createOrUpdateVehicle(request, {}, (err, response) => {
           resolve(response);
         });
       });

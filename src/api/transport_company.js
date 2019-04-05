@@ -1,4 +1,5 @@
-const {Empty, TransportCompany, TransportCompanyAllResponse, EntityCreateResponse, EntityIdRequest, EntityDeleteResponse} = require('../grpc-generated/Transport_pb');
+const {TransportCompany, TransportCompanyAllResponse, EntityCreateResponse, EntityIdRequest, EntityDeleteResponse} = require('../grpc-generated/Transport_pb');
+const {Empty} = require('../grpc-generated/common_pb.js');
 var Config = require('Config');
 const {TransportCompanyServiceClient} = require('../grpc-generated/Transport_grpc_web_pb');
 var clientTransportCompany = new TransportCompanyServiceClient(Config.backendRFPEndpoint);
@@ -12,18 +13,23 @@ module.exports = {
         clientTransportCompany.readAllTransportCompanies(request, {}, (err, transportCompanies) => {
           var listTransportCompanies = [];
           var p = transportCompanies.getTransportcompaniesList();
-
           p.forEach(function(item, index, p){
+            let  tc = new Object();
+            tc.id = item.id;
+            tc.code = item.code;
+            tc.name = item.name;
+
             console.log("Item of getTransportCompaniesList - " + item);
-            listTransportCompanies.push(item);
+            listTransportCompanies.push(tc);
           });
+          console.log("5");
           resolve(listTransportCompanies);
         });
       });
     },
 
     createOrUpdateTransportCompany: function (transportCompany) {
-      console.log("In createOrUpdateDriver function");
+      console.log("In createOrUpdateTransportCompany function");
       return new Promise((resolve, reject) => {
         var request = new TransportCompany();
         if (transportCompany.id) request.setId(transportCompany.id);
@@ -47,7 +53,7 @@ module.exports = {
         });
       });
     },
-    deleteDriver: function (id) {
+    deleteTransportCompany: function (id) {
       console.log("In deleteTransportCompany function");
       return new Promise((resolve, reject) => {
         var request = new EntityIdRequest();

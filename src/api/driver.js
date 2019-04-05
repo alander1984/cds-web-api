@@ -1,4 +1,5 @@
-const {Empty, Driver, DriverAllResponse, EntityCreateResponse, EntityIdRequest, EntityDeleteResponse} = require('../grpc-generated/Transport_pb');
+const {Driver, DriverAllResponse, EntityCreateResponse, EntityIdRequest, EntityDeleteResponse} = require('../grpc-generated/Transport_pb');
+const {Empty} = require('../grpc-generated/common_pb.js');
 var Config = require('Config');
 const {DriverServiceClient} = require('../grpc-generated/Transport_grpc_web_pb');
 var clientDriver = new DriverServiceClient(Config.backendRFPEndpoint);
@@ -13,12 +14,16 @@ module.exports = {
           var listDrivers = [];
           var p = drivers.getDriversList();
           p.forEach(function(item, index, p){
-            // let permission = new Object();
-            // permission.id = item.getId();
-            // permission.code = item.getCode();
-            // permission.name = item.getName();
+             let driver = new Object();
+             driver.id = item.getId();
+             driver.surname = item.getSurname();
+             driver.name = item.getName();
+             driver.patronymic = item.getPatronymic();
+             driver.birthday = item.getBirthday();
+             driver.login = item.getLogin();
+             driver.password = item.getPassword();
             console.log("Item of getDriversList - " + item);
-            listDrivers.push(item);
+            listDrivers.push(driver);
           });
           resolve(listDrivers);
         });
@@ -35,6 +40,7 @@ module.exports = {
         request.setPatronymic(driver.patronymic);
         request.setLogin(driver.login);
         request.setPassword(driver.password);
+        //TODO change
         request.setBirthday("1990-04-19 00:00");
         console.log("REQUEST.NAME " + request.getName());
         console.log("REQUEST.SURNAME  " + request.getSurname());
