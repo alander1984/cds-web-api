@@ -11,6 +11,7 @@ module.exports = {
         console.log("In sendAllDrivers function");
         var request = new Empty();
         clientDriver.readAllDrivers(request, {}, (err, drivers) => {
+          console.log(err);  
           var listDrivers = [];
           var p = drivers.getDriversList();
           p.forEach(function(item, index, p){

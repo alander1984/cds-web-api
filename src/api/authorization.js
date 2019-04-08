@@ -18,7 +18,7 @@ module.exports = {
     }
   }
 }
-
+/*
 if ($(location).attr("href").indexOf("/login")==-1) {
     var t = localStorage.getItem('user-token');
     if (t==null) {
@@ -32,3 +32,4 @@ if ($(location).attr("href").indexOf("/login")==-1) {
     }
 }); 
 }
+*/
