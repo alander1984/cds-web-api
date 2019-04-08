@@ -12,7 +12,14 @@ module.exports = {
     	return new Promise((resolve, reject) => {
         	var request = new Store();
         	if (store.id) request.setId(store.id);
-        	request.setType(store.type);
+        	if(store.type.localeCompare('OFFLINE') == 0) {
+        	    console.log('LOCAL COMPARE OFFLINE');
+        	    request.setType(0);
+        	} else if(store.type.localeCompare('ONLINE') == 0) {
+        	    console.log('LOCAL COMPARE ONLINE');
+        	    request.setType(1);
+        	}
+        	
         	request.setName(store.name);
         	request.setAddress(store.address);
         	request.setCode(store.code);
@@ -38,6 +45,15 @@ module.exports = {
         	var request = new StoreIdRequest();
         	request.setId(id);
         	client.getByIdStore(request, {}, (err, store) => {
+        	    let responseStore = new Object();
+        	    responseStore.id = store.getId();
+        	    responseStore.type = store.getType();
+        	    responseStore.name = store.getName();
+        	    responseStore.address = store.getAddress();
+        	    responseStore.code = store.getCode();
+        	    responseStore.lon = store.getLon();
+        	    responseStore.lat = store.getLat();
+        	    responseStore.comment = store.getComment();
       			resolve(store);
         	}); 
 	   });
@@ -50,9 +66,16 @@ module.exports = {
         	    var storesList = [];
         	    var protoStores = stores.getStoresList();
         	    protoStores.forEach(function(item, index, protoStores){
+        	       console.log("ENUM STORE TYPE:   " + item.getType());
         	       let store = new Object();
         	       store.id = item.getId();
-        	       store.type = item.getType();
+        	       
+        	       
+        	       if(item.getType() == 0) {
+        	           store.type = 'OFFLINE';
+        	       } else if(item.getType() == 1) {
+        	           store.type = 'ONLINE';
+        	       }
                    store.name = item.getName();
                    store.address = item.getAddress();
                    store.code = item.getCode();
