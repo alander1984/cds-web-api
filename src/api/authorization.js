@@ -15,3 +15,19 @@ module.exports = {
     }
   }
 }
+/*
+if ($(location).attr("href").indexOf("/login")==-1) {
+    var t = localStorage.getItem('user-token');
+    if (t==null) {
+        window.location.replace(_ctx+"/login")
+    }
+    var checkTokenRequest = new CheckTokenRequest();
+    checkTokenRequest.setToken(t);
+    tokenServiceCloient.checkToken(checkTokenRequest, {}, (err, accessToken) => {
+    if (err) {
+        window.location.replace(_ctx+"/login")
+    }
+}); 
+}
+*/
+}
