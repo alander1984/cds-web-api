@@ -10,16 +10,15 @@ module.exports = {
         	var request = new Empty();
         	clientPermission.readAllPermission(request, {}, (err, permissions) => {
         	    var listPermissions = [];
-                var _permissions = permissions.array[0];
-                _permissions.forEach(function(item, index, _permissions){ 
-                    var permission = new Object();
-                    let id = {id: item[0]};
-                    let code = {code: item[1]};
-                    let name = {name: item[2]};
-                    Object.assign(permission, id, code, name);
-                    console.log("PERMISSION_NAME :  " + permission.name);
+        	    var p = permissions.getPermissionsList();
+        	    p.forEach(function(item, index, p){
+        	        let permission = new Object();
+                    permission.id = item.getId();
+                    permission.code = item.getCode();
+                    permission.name = item.getName();
+                    //console.log("PERMISSION_ID :  " + permission.id + "  NAME :  " + permission.name + "  CODE :  " + permission.code);
                     listPermissions.push(permission);
-                }); 
+        	    });
       			resolve(listPermissions);
         	}); 
 	   });
@@ -27,7 +26,6 @@ module.exports = {
     createOrUpdatePermission: function (permission) {
     	return new Promise((resolve, reject) => {
         	var request = new Permission();
-        	//request = permission;
         	if (permission.id) request.setId(permission.id);
         	request.setCode(permission.code);
         	request.setName(permission.name);
