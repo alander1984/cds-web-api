@@ -3,7 +3,7 @@ var Config = require('Config');
 
 
 const {StoreServiceClient} = require('../grpc-generated/stores_grpc_web_pb.js');
-var client = new StoreServiceClient(Config.backendAPITestEndpoint);
+var client = new StoreServiceClient(Config.backendRFPEndpoint);
 
 
 module.exports = {
@@ -63,6 +63,9 @@ module.exports = {
         	var request = new Empty();
         	
         	client.getAllStore(request, {}, (err, stores) => {
+        	    if (!err) {
+        	        console.log(err);
+        	    }
         	    var storesList = [];
         	    var protoStores = stores.getStoresList();
         	    protoStores.forEach(function(item, index, protoStores){

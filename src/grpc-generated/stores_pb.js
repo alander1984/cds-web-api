@@ -159,8 +159,8 @@ proto.Store.toObject = function(includeInstance, msg) {
     name: jspb.Message.getFieldWithDefault(msg, 3, ""),
     address: jspb.Message.getFieldWithDefault(msg, 4, ""),
     code: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    lon: +jspb.Message.getFieldWithDefault(msg, 6, 0.0),
-    lat: +jspb.Message.getFieldWithDefault(msg, 7, 0.0),
+    lat: +jspb.Message.getFieldWithDefault(msg, 6, 0.0),
+    lon: +jspb.Message.getFieldWithDefault(msg, 7, 0.0),
     comment: jspb.Message.getFieldWithDefault(msg, 8, "")
   };
 
@@ -220,11 +220,11 @@ proto.Store.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 6:
       var value = /** @type {number} */ (reader.readDouble());
-      msg.setLon(value);
+      msg.setLat(value);
       break;
     case 7:
       var value = /** @type {number} */ (reader.readDouble());
-      msg.setLat(value);
+      msg.setLon(value);
       break;
     case 8:
       var value = /** @type {string} */ (reader.readString());
@@ -294,14 +294,14 @@ proto.Store.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getLon();
+  f = message.getLat();
   if (f !== 0.0) {
     writer.writeDouble(
       6,
       f
     );
   }
-  f = message.getLat();
+  f = message.getLon();
   if (f !== 0.0) {
     writer.writeDouble(
       7,
@@ -402,31 +402,31 @@ proto.Store.prototype.setCode = function(value) {
 
 
 /**
- * optional double lon = 6;
+ * optional double lat = 6;
  * @return {number}
  */
-proto.Store.prototype.getLon = function() {
+proto.Store.prototype.getLat = function() {
   return /** @type {number} */ (+jspb.Message.getFieldWithDefault(this, 6, 0.0));
 };
 
 
 /** @param {number} value */
-proto.Store.prototype.setLon = function(value) {
+proto.Store.prototype.setLat = function(value) {
   jspb.Message.setProto3FloatField(this, 6, value);
 };
 
 
 /**
- * optional double lat = 7;
+ * optional double lon = 7;
  * @return {number}
  */
-proto.Store.prototype.getLat = function() {
+proto.Store.prototype.getLon = function() {
   return /** @type {number} */ (+jspb.Message.getFieldWithDefault(this, 7, 0.0));
 };
 
 
 /** @param {number} value */
-proto.Store.prototype.setLat = function(value) {
+proto.Store.prototype.setLon = function(value) {
   jspb.Message.setProto3FloatField(this, 7, value);
 };
 
