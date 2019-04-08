@@ -14,8 +14,14 @@ module.exports = {
           var listVehicles = [];
           var p = vehicles.getVehiclesList();
           p.forEach(function(item, index, p){
+            let vehicle = {};
+            vehicle.id = item.getId();
+            vehicle.registrationNumber = item.getRegistrationnumber();
+            vehicle.model = item.getModel();
+            vehicle.tonnage = item.getTonnage();
+            vehicle.capacity = item.getCapacity();
             console.log("Item of getVehiclesList - " + item);
-            listVehicles.push(item);
+            listVehicles.push(vehicle);
           });
           resolve(listVehicles);
         });
@@ -27,7 +33,7 @@ module.exports = {
       return new Promise((resolve, reject) => {
         var request = new Vehicle();
         if (vehicle.id) request.setId(vehicle.id);
-        request.setRegistrationnumber(vehicle.registrationnumber);
+        request.setRegistrationnumber(vehicle.registrationNumber);
         request.setModel(vehicle.model);
         request.setTonnage(vehicle.tonnage);
         request.setCapacity(vehicle.capacity);
