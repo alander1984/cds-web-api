@@ -15,13 +15,13 @@
 
 module.exports = {
   ...require('./api/routes.js'),
-/*  ...require('./api/authorization.js'),
+  /*...require('./api/authorization.js'),*/
   ...require('./api/token.js'),
   ...require('./api/roles.js'),
   ...require('./api/permissions.js'),
   ...require('./api/driver.js'),
   ...require('./api/transport_company.js'),
-  ...require('./api/vehicle.js'),*/
-  ...require('./api/stores.js')
+  ...require('./api/vehicle.js'),
+  ...require('./api/stores.js') 
  }
 

@@ -750,7 +750,7 @@ proto.tech.lmru.auth.grpc.service.generated.impl.Role.prototype.clearPermissions
  * @private {!Array<number>}
  * @const
  */
-proto.tech.lmru.auth.grpc.service.generated.impl.User.repeatedFields_ = [4];
+proto.tech.lmru.auth.grpc.service.generated.impl.User.repeatedFields_ = [5];
 
 
 
@@ -784,6 +784,7 @@ proto.tech.lmru.auth.grpc.service.generated.impl.User.toObject = function(includ
     id: jspb.Message.getFieldWithDefault(msg, 1, 0),
     code: jspb.Message.getFieldWithDefault(msg, 2, ""),
     name: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    password: jspb.Message.getFieldWithDefault(msg, 4, ""),
     rolesList: jspb.Message.toObjectList(msg.getRolesList(),
     proto.tech.lmru.auth.grpc.service.generated.impl.Role.toObject, includeInstance)
   };
@@ -835,6 +836,10 @@ proto.tech.lmru.auth.grpc.service.generated.impl.User.deserializeBinaryFromReade
       msg.setName(value);
       break;
     case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPassword(value);
+      break;
+    case 5:
       var value = new proto.tech.lmru.auth.grpc.service.generated.impl.Role;
       reader.readMessage(value,proto.tech.lmru.auth.grpc.service.generated.impl.Role.deserializeBinaryFromReader);
       msg.addRoles(value);
@@ -889,10 +894,17 @@ proto.tech.lmru.auth.grpc.service.generated.impl.User.serializeBinaryToWriter = 
       f
     );
   }
+  f = message.getPassword();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
+    );
+  }
   f = message.getRolesList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
-      4,
+      5,
       f,
       proto.tech.lmru.auth.grpc.service.generated.impl.Role.serializeBinaryToWriter
     );
@@ -946,18 +958,33 @@ proto.tech.lmru.auth.grpc.service.generated.impl.User.prototype.setName = functi
 
 
 /**
- * repeated Role roles = 4;
+ * optional string password = 4;
+ * @return {string}
+ */
+proto.tech.lmru.auth.grpc.service.generated.impl.User.prototype.getPassword = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/** @param {string} value */
+proto.tech.lmru.auth.grpc.service.generated.impl.User.prototype.setPassword = function(value) {
+  jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * repeated Role roles = 5;
  * @return {!Array<!proto.tech.lmru.auth.grpc.service.generated.impl.Role>}
  */
 proto.tech.lmru.auth.grpc.service.generated.impl.User.prototype.getRolesList = function() {
   return /** @type{!Array<!proto.tech.lmru.auth.grpc.service.generated.impl.Role>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.tech.lmru.auth.grpc.service.generated.impl.Role, 4));
+    jspb.Message.getRepeatedWrapperField(this, proto.tech.lmru.auth.grpc.service.generated.impl.Role, 5));
 };
 
 
 /** @param {!Array<!proto.tech.lmru.auth.grpc.service.generated.impl.Role>} value */
 proto.tech.lmru.auth.grpc.service.generated.impl.User.prototype.setRolesList = function(value) {
-  jspb.Message.setRepeatedWrapperField(this, 4, value);
+  jspb.Message.setRepeatedWrapperField(this, 5, value);
 };
 
 
@@ -967,7 +994,7 @@ proto.tech.lmru.auth.grpc.service.generated.impl.User.prototype.setRolesList = f
  * @return {!proto.tech.lmru.auth.grpc.service.generated.impl.Role}
  */
 proto.tech.lmru.auth.grpc.service.generated.impl.User.prototype.addRoles = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 4, opt_value, proto.tech.lmru.auth.grpc.service.generated.impl.Role, opt_index);
+  return jspb.Message.addToRepeatedWrapperField(this, 5, opt_value, proto.tech.lmru.auth.grpc.service.generated.impl.Role, opt_index);
 };
 
 
