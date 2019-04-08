@@ -1,10 +1,7 @@
 const {Empty, UserAllResponse} = require('../grpc-generated/AuthEntity_pb.js');
-const {UserServiceClient} = require('../grpc-generated/AuthEntity_grpc_web_pb.js');
+const {UserReadAllServiceClient} = require('../grpc-generated/AuthEntity_grpc_web_pb.js');
 var Config = require('Config');
-var client = new UserServiceClient(Config.backendAPITestEndpoint);
-const {CheckTokenRequest} = require('../grpc-generated/Authorization_pb.js');
-const {TokenServiceClient} = require('../grpc-generated/Authorization_grpc_web_pb.js');
-var tokenServiceCloient = new TokenServiceClient(Config.authAPITestEndpoint);
+var client = new UserReadAllServiceClient(Config.backendAPITestEndpoint);
 
 module.exports = {
   Authorization: {
@@ -33,3 +30,4 @@ if ($(location).attr("href").indexOf("/login")==-1) {
 }); 
 }
 */
+}

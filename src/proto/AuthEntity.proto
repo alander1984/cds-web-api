@@ -22,8 +22,7 @@ message User {
     int32 id = 1;
     string code = 2;
     string name = 3;
-    string password = 4;
-    repeated Role roles = 5;
+    repeated Role roles = 4;
 }
 
 message EntityIdRequest {
@@ -52,27 +51,54 @@ message EntityCreateResponse {
 
 // Permission API
 
-service PermissionService {
+service PermissionCreateOrUpdateService {
     rpc createOrUpdatePermission(Permission) returns (EntityCreateResponse);
+}
+
+service PermissionReadByIdService {
     rpc readByIdPermission(EntityIdRequest) returns (Permission);
+}
+
+service PermissionReadAllService {
     rpc readAllPermission(Empty) returns (PermissionAllResponse);
+}
+
+service PermissionDeleteByIdService {
     rpc deleteByIdPermission(EntityIdRequest) returns (EntityDeleteResponse);
 }
 
 // Roles API
 
-service RoleService {
+service RoleCreateOrUpdateService {
     rpc createOrUpdateRole(Role) returns (EntityCreateResponse);
+}
+
+service RoleReadByIdService {
     rpc readByIdRole(EntityIdRequest) returns (Role);
+}
+
+service RoleReadAllService {
     rpc readAllRole(Empty) returns (RoleAllResponse);
+}
+
+service RoleDeleteByIdService {
     rpc deleteByIdRole(EntityIdRequest) returns (EntityDeleteResponse);
 }
 
 // Users API
 
-service UserService {
+service UserCreateOrUpdateService {
     rpc createOrUpdateUser(User) returns (EntityCreateResponse);
+}
+
+service UserReadByIdService {
     rpc readByIdUser(EntityIdRequest) returns (User);
+}
+
+service UserReadAllService {
     rpc readAllUser(Empty) returns (UserAllResponse);
+}
+
+service UserDeleteByIdService {
     rpc deleteByIdUser(EntityIdRequest) returns (EntityDeleteResponse);
 }
