@@ -23,6 +23,7 @@ module.exports = {
   ...require('./api/permissions.js'),
   ...require('./api/driver.js'),
   ...require('./api/transport_company.js'),
-  ...require('./api/vehicle.js')
+  ...require('./api/vehicle.js'),
+  ...require('./api/stores.js')
  }
 
