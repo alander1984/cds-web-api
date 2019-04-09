@@ -1,7 +1,7 @@
 const {ErrorDescription, AuthenticationRequest, AccessToken, CheckTokenRequest} = require('../grpc-generated/Authorization_pb.js');
 const {TokenServiceClient} = require('../grpc-generated/Authorization_grpc_web_pb.js');
 var Config = require('Config');
-var client = new TokenServiceClient(Config.authAPITestEndpoint);
+var client = new TokenServiceClient(Config.authAPIendpoint);
 
 module.exports = {
     Token: {

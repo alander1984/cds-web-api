@@ -12,8 +12,6 @@
         });  
     }
 }*/
-require('./api/routes.js');
-
 
 module.exports = {
   ...require('./api/routes.js'),
@@ -21,6 +19,10 @@ module.exports = {
   ...require('./api/token.js'),
   ...require('./api/roles.js'),
   ...require('./api/permissions.js'),
-  ...require('./api/delivery.js')
- }
+  ...require('./api/delivery.js'),
+  ...require('./api/driver.js'),
+  ...require('./api/transport_company.js'),
+  ...require('./api/vehicle.js'),
+  ...require('./api/stores.js') 
+ };
 
