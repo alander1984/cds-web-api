@@ -756,7 +756,7 @@ proto.tech.lmru.auth.grpc.service.generated.impl.UserServicePromiseClient.protot
 
 /**
  * @const
- * @type {!grpc.web.AbstractClientBase.MethodInfo<readAllUser
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
  *   !proto.tech.lmru.auth.grpc.service.generated.impl.Empty,
  *   !proto.tech.lmru.auth.grpc.service.generated.impl.UserAllResponse>}
  */

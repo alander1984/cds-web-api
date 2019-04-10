@@ -1,5 +1,5 @@
 /**
- * @fileoverview gRPC-Web generated client stub for transportservice
+ * @fileoverview gRPC-Web generated client stub for 
  * @enhanceable
  * @public
  */
@@ -13,8 +13,7 @@ grpc.web = require('grpc-web');
 
 
 var common_pb = require('./common_pb.js')
-const proto = {};
-proto.transportservice = require('./Transport_pb.js');
+const proto = require('./Transport_pb.js');
 
 /**
  * @param {string} hostname
@@ -24,7 +23,7 @@ proto.transportservice = require('./Transport_pb.js');
  * @struct
  * @final
  */
-proto.transportservice.DriverServiceClient =
+proto.DriverServiceClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options['format'] = 'text';
@@ -60,15 +59,15 @@ proto.transportservice.DriverServiceClient =
  * @struct
  * @final
  */
-proto.transportservice.DriverServicePromiseClient =
+proto.DriverServicePromiseClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options['format'] = 'text';
 
   /**
-   * @private @const {!proto.transportservice.DriverServiceClient} The delegate callback based client
+   * @private @const {!proto.DriverServiceClient} The delegate callback based client
    */
-  this.delegateClient_ = new proto.transportservice.DriverServiceClient(
+  this.delegateClient_ = new proto.DriverServiceClient(
       hostname, credentials, options);
 
 };
@@ -77,33 +76,33 @@ proto.transportservice.DriverServicePromiseClient =
 /**
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.transportservice.Driver,
- *   !proto.transportservice.EntityCreateResponse>}
+ *   !proto.Driver,
+ *   !proto.EntityCreateResponse>}
  */
 const methodInfo_DriverService_createOrUpdateDriver = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.transportservice.EntityCreateResponse,
-  /** @param {!proto.transportservice.Driver} request */
+  proto.EntityCreateResponse,
+  /** @param {!proto.Driver} request */
   function(request) {
     return request.serializeBinary();
   },
-  proto.transportservice.EntityCreateResponse.deserializeBinary
+  proto.EntityCreateResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.transportservice.Driver} request The
+ * @param {!proto.Driver} request The
  *     request proto
  * @param {!Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.Error, ?proto.transportservice.EntityCreateResponse)}
+ * @param {function(?grpc.web.Error, ?proto.EntityCreateResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.transportservice.EntityCreateResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.EntityCreateResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.transportservice.DriverServiceClient.prototype.createOrUpdateDriver =
+proto.DriverServiceClient.prototype.createOrUpdateDriver =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/transportservice.DriverService/createOrUpdateDriver',
+      '/DriverService/createOrUpdateDriver',
       request,
       metadata,
       methodInfo_DriverService_createOrUpdateDriver,
@@ -112,14 +111,14 @@ proto.transportservice.DriverServiceClient.prototype.createOrUpdateDriver =
 
 
 /**
- * @param {!proto.transportservice.Driver} request The
+ * @param {!proto.Driver} request The
  *     request proto
  * @param {!Object<string, string>} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.transportservice.EntityCreateResponse>}
+ * @return {!Promise<!proto.EntityCreateResponse>}
  *     The XHR Node Readable Stream
  */
-proto.transportservice.DriverServicePromiseClient.prototype.createOrUpdateDriver =
+proto.DriverServicePromiseClient.prototype.createOrUpdateDriver =
     function(request, metadata) {
   return new Promise((resolve, reject) => {
     this.delegateClient_.createOrUpdateDriver(
@@ -133,33 +132,33 @@ proto.transportservice.DriverServicePromiseClient.prototype.createOrUpdateDriver
 /**
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.transportservice.EntityIdRequest,
- *   !proto.transportservice.Driver>}
+ *   !proto.EntityIdRequest,
+ *   !proto.Driver>}
  */
 const methodInfo_DriverService_readByIdDriver = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.transportservice.Driver,
-  /** @param {!proto.transportservice.EntityIdRequest} request */
+  proto.Driver,
+  /** @param {!proto.EntityIdRequest} request */
   function(request) {
     return request.serializeBinary();
   },
-  proto.transportservice.Driver.deserializeBinary
+  proto.Driver.deserializeBinary
 );
 
 
 /**
- * @param {!proto.transportservice.EntityIdRequest} request The
+ * @param {!proto.EntityIdRequest} request The
  *     request proto
  * @param {!Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.Error, ?proto.transportservice.Driver)}
+ * @param {function(?grpc.web.Error, ?proto.Driver)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.transportservice.Driver>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.Driver>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.transportservice.DriverServiceClient.prototype.readByIdDriver =
+proto.DriverServiceClient.prototype.readByIdDriver =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/transportservice.DriverService/readByIdDriver',
+      '/DriverService/readByIdDriver',
       request,
       metadata,
       methodInfo_DriverService_readByIdDriver,
@@ -168,14 +167,14 @@ proto.transportservice.DriverServiceClient.prototype.readByIdDriver =
 
 
 /**
- * @param {!proto.transportservice.EntityIdRequest} request The
+ * @param {!proto.EntityIdRequest} request The
  *     request proto
  * @param {!Object<string, string>} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.transportservice.Driver>}
+ * @return {!Promise<!proto.Driver>}
  *     The XHR Node Readable Stream
  */
-proto.transportservice.DriverServicePromiseClient.prototype.readByIdDriver =
+proto.DriverServicePromiseClient.prototype.readByIdDriver =
     function(request, metadata) {
   return new Promise((resolve, reject) => {
     this.delegateClient_.readByIdDriver(
@@ -190,15 +189,15 @@ proto.transportservice.DriverServicePromiseClient.prototype.readByIdDriver =
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
  *   !proto.Empty,
- *   !proto.transportservice.DriverAllResponse>}
+ *   !proto.DriverAllResponse>}
  */
 const methodInfo_DriverService_readAllDrivers = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.transportservice.DriverAllResponse,
+  proto.DriverAllResponse,
   /** @param {!proto.Empty} request */
   function(request) {
     return request.serializeBinary();
   },
-  proto.transportservice.DriverAllResponse.deserializeBinary
+  proto.DriverAllResponse.deserializeBinary
 );
 
 
@@ -207,15 +206,15 @@ const methodInfo_DriverService_readAllDrivers = new grpc.web.AbstractClientBase.
  *     request proto
  * @param {!Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.Error, ?proto.transportservice.DriverAllResponse)}
+ * @param {function(?grpc.web.Error, ?proto.DriverAllResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.transportservice.DriverAllResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.DriverAllResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.transportservice.DriverServiceClient.prototype.readAllDrivers =
+proto.DriverServiceClient.prototype.readAllDrivers =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/transportservice.DriverService/readAllDrivers',
+      '/DriverService/readAllDrivers',
       request,
       metadata,
       methodInfo_DriverService_readAllDrivers,
@@ -228,10 +227,10 @@ proto.transportservice.DriverServiceClient.prototype.readAllDrivers =
  *     request proto
  * @param {!Object<string, string>} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.transportservice.DriverAllResponse>}
+ * @return {!Promise<!proto.DriverAllResponse>}
  *     The XHR Node Readable Stream
  */
-proto.transportservice.DriverServicePromiseClient.prototype.readAllDrivers =
+proto.DriverServicePromiseClient.prototype.readAllDrivers =
     function(request, metadata) {
   return new Promise((resolve, reject) => {
     this.delegateClient_.readAllDrivers(
@@ -245,33 +244,33 @@ proto.transportservice.DriverServicePromiseClient.prototype.readAllDrivers =
 /**
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.transportservice.EntityIdRequest,
- *   !proto.transportservice.EntityDeleteResponse>}
+ *   !proto.EntityIdRequest,
+ *   !proto.EntityDeleteResponse>}
  */
 const methodInfo_DriverService_deleteByIdDriver = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.transportservice.EntityDeleteResponse,
-  /** @param {!proto.transportservice.EntityIdRequest} request */
+  proto.EntityDeleteResponse,
+  /** @param {!proto.EntityIdRequest} request */
   function(request) {
     return request.serializeBinary();
   },
-  proto.transportservice.EntityDeleteResponse.deserializeBinary
+  proto.EntityDeleteResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.transportservice.EntityIdRequest} request The
+ * @param {!proto.EntityIdRequest} request The
  *     request proto
  * @param {!Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.Error, ?proto.transportservice.EntityDeleteResponse)}
+ * @param {function(?grpc.web.Error, ?proto.EntityDeleteResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.transportservice.EntityDeleteResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.EntityDeleteResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.transportservice.DriverServiceClient.prototype.deleteByIdDriver =
+proto.DriverServiceClient.prototype.deleteByIdDriver =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/transportservice.DriverService/deleteByIdDriver',
+      '/DriverService/deleteByIdDriver',
       request,
       metadata,
       methodInfo_DriverService_deleteByIdDriver,
@@ -280,14 +279,14 @@ proto.transportservice.DriverServiceClient.prototype.deleteByIdDriver =
 
 
 /**
- * @param {!proto.transportservice.EntityIdRequest} request The
+ * @param {!proto.EntityIdRequest} request The
  *     request proto
  * @param {!Object<string, string>} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.transportservice.EntityDeleteResponse>}
+ * @return {!Promise<!proto.EntityDeleteResponse>}
  *     The XHR Node Readable Stream
  */
-proto.transportservice.DriverServicePromiseClient.prototype.deleteByIdDriver =
+proto.DriverServicePromiseClient.prototype.deleteByIdDriver =
     function(request, metadata) {
   return new Promise((resolve, reject) => {
     this.delegateClient_.deleteByIdDriver(
@@ -306,7 +305,7 @@ proto.transportservice.DriverServicePromiseClient.prototype.deleteByIdDriver =
  * @struct
  * @final
  */
-proto.transportservice.VehicleServiceClient =
+proto.VehicleServiceClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options['format'] = 'text';
@@ -342,15 +341,15 @@ proto.transportservice.VehicleServiceClient =
  * @struct
  * @final
  */
-proto.transportservice.VehicleServicePromiseClient =
+proto.VehicleServicePromiseClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options['format'] = 'text';
 
   /**
-   * @private @const {!proto.transportservice.VehicleServiceClient} The delegate callback based client
+   * @private @const {!proto.VehicleServiceClient} The delegate callback based client
    */
-  this.delegateClient_ = new proto.transportservice.VehicleServiceClient(
+  this.delegateClient_ = new proto.VehicleServiceClient(
       hostname, credentials, options);
 
 };
@@ -359,33 +358,33 @@ proto.transportservice.VehicleServicePromiseClient =
 /**
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.transportservice.Vehicle,
- *   !proto.transportservice.EntityCreateResponse>}
+ *   !proto.Vehicle,
+ *   !proto.EntityCreateResponse>}
  */
 const methodInfo_VehicleService_createOrUpdateVehicle = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.transportservice.EntityCreateResponse,
-  /** @param {!proto.transportservice.Vehicle} request */
+  proto.EntityCreateResponse,
+  /** @param {!proto.Vehicle} request */
   function(request) {
     return request.serializeBinary();
   },
-  proto.transportservice.EntityCreateResponse.deserializeBinary
+  proto.EntityCreateResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.transportservice.Vehicle} request The
+ * @param {!proto.Vehicle} request The
  *     request proto
  * @param {!Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.Error, ?proto.transportservice.EntityCreateResponse)}
+ * @param {function(?grpc.web.Error, ?proto.EntityCreateResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.transportservice.EntityCreateResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.EntityCreateResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.transportservice.VehicleServiceClient.prototype.createOrUpdateVehicle =
+proto.VehicleServiceClient.prototype.createOrUpdateVehicle =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/transportservice.VehicleService/createOrUpdateVehicle',
+      '/VehicleService/createOrUpdateVehicle',
       request,
       metadata,
       methodInfo_VehicleService_createOrUpdateVehicle,
@@ -394,14 +393,14 @@ proto.transportservice.VehicleServiceClient.prototype.createOrUpdateVehicle =
 
 
 /**
- * @param {!proto.transportservice.Vehicle} request The
+ * @param {!proto.Vehicle} request The
  *     request proto
  * @param {!Object<string, string>} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.transportservice.EntityCreateResponse>}
+ * @return {!Promise<!proto.EntityCreateResponse>}
  *     The XHR Node Readable Stream
  */
-proto.transportservice.VehicleServicePromiseClient.prototype.createOrUpdateVehicle =
+proto.VehicleServicePromiseClient.prototype.createOrUpdateVehicle =
     function(request, metadata) {
   return new Promise((resolve, reject) => {
     this.delegateClient_.createOrUpdateVehicle(
@@ -415,33 +414,33 @@ proto.transportservice.VehicleServicePromiseClient.prototype.createOrUpdateVehic
 /**
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.transportservice.EntityIdRequest,
- *   !proto.transportservice.Vehicle>}
+ *   !proto.EntityIdRequest,
+ *   !proto.Vehicle>}
  */
 const methodInfo_VehicleService_readByIdVehicle = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.transportservice.Vehicle,
-  /** @param {!proto.transportservice.EntityIdRequest} request */
+  proto.Vehicle,
+  /** @param {!proto.EntityIdRequest} request */
   function(request) {
     return request.serializeBinary();
   },
-  proto.transportservice.Vehicle.deserializeBinary
+  proto.Vehicle.deserializeBinary
 );
 
 
 /**
- * @param {!proto.transportservice.EntityIdRequest} request The
+ * @param {!proto.EntityIdRequest} request The
  *     request proto
  * @param {!Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.Error, ?proto.transportservice.Vehicle)}
+ * @param {function(?grpc.web.Error, ?proto.Vehicle)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.transportservice.Vehicle>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.Vehicle>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.transportservice.VehicleServiceClient.prototype.readByIdVehicle =
+proto.VehicleServiceClient.prototype.readByIdVehicle =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/transportservice.VehicleService/readByIdVehicle',
+      '/VehicleService/readByIdVehicle',
       request,
       metadata,
       methodInfo_VehicleService_readByIdVehicle,
@@ -450,14 +449,14 @@ proto.transportservice.VehicleServiceClient.prototype.readByIdVehicle =
 
 
 /**
- * @param {!proto.transportservice.EntityIdRequest} request The
+ * @param {!proto.EntityIdRequest} request The
  *     request proto
  * @param {!Object<string, string>} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.transportservice.Vehicle>}
+ * @return {!Promise<!proto.Vehicle>}
  *     The XHR Node Readable Stream
  */
-proto.transportservice.VehicleServicePromiseClient.prototype.readByIdVehicle =
+proto.VehicleServicePromiseClient.prototype.readByIdVehicle =
     function(request, metadata) {
   return new Promise((resolve, reject) => {
     this.delegateClient_.readByIdVehicle(
@@ -472,15 +471,15 @@ proto.transportservice.VehicleServicePromiseClient.prototype.readByIdVehicle =
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
  *   !proto.Empty,
- *   !proto.transportservice.VehicleAllResponse>}
+ *   !proto.VehicleAllResponse>}
  */
 const methodInfo_VehicleService_readAllVehicles = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.transportservice.VehicleAllResponse,
+  proto.VehicleAllResponse,
   /** @param {!proto.Empty} request */
   function(request) {
     return request.serializeBinary();
   },
-  proto.transportservice.VehicleAllResponse.deserializeBinary
+  proto.VehicleAllResponse.deserializeBinary
 );
 
 
@@ -489,15 +488,15 @@ const methodInfo_VehicleService_readAllVehicles = new grpc.web.AbstractClientBas
  *     request proto
  * @param {!Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.Error, ?proto.transportservice.VehicleAllResponse)}
+ * @param {function(?grpc.web.Error, ?proto.VehicleAllResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.transportservice.VehicleAllResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.VehicleAllResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.transportservice.VehicleServiceClient.prototype.readAllVehicles =
+proto.VehicleServiceClient.prototype.readAllVehicles =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/transportservice.VehicleService/readAllVehicles',
+      '/VehicleService/readAllVehicles',
       request,
       metadata,
       methodInfo_VehicleService_readAllVehicles,
@@ -510,10 +509,10 @@ proto.transportservice.VehicleServiceClient.prototype.readAllVehicles =
  *     request proto
  * @param {!Object<string, string>} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.transportservice.VehicleAllResponse>}
+ * @return {!Promise<!proto.VehicleAllResponse>}
  *     The XHR Node Readable Stream
  */
-proto.transportservice.VehicleServicePromiseClient.prototype.readAllVehicles =
+proto.VehicleServicePromiseClient.prototype.readAllVehicles =
     function(request, metadata) {
   return new Promise((resolve, reject) => {
     this.delegateClient_.readAllVehicles(
@@ -527,33 +526,33 @@ proto.transportservice.VehicleServicePromiseClient.prototype.readAllVehicles =
 /**
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.transportservice.EntityIdRequest,
- *   !proto.transportservice.EntityDeleteResponse>}
+ *   !proto.EntityIdRequest,
+ *   !proto.EntityDeleteResponse>}
  */
 const methodInfo_VehicleService_deleteByIdVehicle = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.transportservice.EntityDeleteResponse,
-  /** @param {!proto.transportservice.EntityIdRequest} request */
+  proto.EntityDeleteResponse,
+  /** @param {!proto.EntityIdRequest} request */
   function(request) {
     return request.serializeBinary();
   },
-  proto.transportservice.EntityDeleteResponse.deserializeBinary
+  proto.EntityDeleteResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.transportservice.EntityIdRequest} request The
+ * @param {!proto.EntityIdRequest} request The
  *     request proto
  * @param {!Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.Error, ?proto.transportservice.EntityDeleteResponse)}
+ * @param {function(?grpc.web.Error, ?proto.EntityDeleteResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.transportservice.EntityDeleteResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.EntityDeleteResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.transportservice.VehicleServiceClient.prototype.deleteByIdVehicle =
+proto.VehicleServiceClient.prototype.deleteByIdVehicle =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/transportservice.VehicleService/deleteByIdVehicle',
+      '/VehicleService/deleteByIdVehicle',
       request,
       metadata,
       methodInfo_VehicleService_deleteByIdVehicle,
@@ -562,14 +561,14 @@ proto.transportservice.VehicleServiceClient.prototype.deleteByIdVehicle =
 
 
 /**
- * @param {!proto.transportservice.EntityIdRequest} request The
+ * @param {!proto.EntityIdRequest} request The
  *     request proto
  * @param {!Object<string, string>} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.transportservice.EntityDeleteResponse>}
+ * @return {!Promise<!proto.EntityDeleteResponse>}
  *     The XHR Node Readable Stream
  */
-proto.transportservice.VehicleServicePromiseClient.prototype.deleteByIdVehicle =
+proto.VehicleServicePromiseClient.prototype.deleteByIdVehicle =
     function(request, metadata) {
   return new Promise((resolve, reject) => {
     this.delegateClient_.deleteByIdVehicle(
@@ -588,7 +587,7 @@ proto.transportservice.VehicleServicePromiseClient.prototype.deleteByIdVehicle =
  * @struct
  * @final
  */
-proto.transportservice.TransportCompanyServiceClient =
+proto.TransportCompanyServiceClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options['format'] = 'text';
@@ -624,15 +623,15 @@ proto.transportservice.TransportCompanyServiceClient =
  * @struct
  * @final
  */
-proto.transportservice.TransportCompanyServicePromiseClient =
+proto.TransportCompanyServicePromiseClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
   options['format'] = 'text';
 
   /**
-   * @private @const {!proto.transportservice.TransportCompanyServiceClient} The delegate callback based client
+   * @private @const {!proto.TransportCompanyServiceClient} The delegate callback based client
    */
-  this.delegateClient_ = new proto.transportservice.TransportCompanyServiceClient(
+  this.delegateClient_ = new proto.TransportCompanyServiceClient(
       hostname, credentials, options);
 
 };
@@ -641,33 +640,33 @@ proto.transportservice.TransportCompanyServicePromiseClient =
 /**
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.transportservice.TransportCompany,
- *   !proto.transportservice.EntityCreateResponse>}
+ *   !proto.TransportCompany,
+ *   !proto.EntityCreateResponse>}
  */
 const methodInfo_TransportCompanyService_createOrUpdateTransportCompany = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.transportservice.EntityCreateResponse,
-  /** @param {!proto.transportservice.TransportCompany} request */
+  proto.EntityCreateResponse,
+  /** @param {!proto.TransportCompany} request */
   function(request) {
     return request.serializeBinary();
   },
-  proto.transportservice.EntityCreateResponse.deserializeBinary
+  proto.EntityCreateResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.transportservice.TransportCompany} request The
+ * @param {!proto.TransportCompany} request The
  *     request proto
  * @param {!Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.Error, ?proto.transportservice.EntityCreateResponse)}
+ * @param {function(?grpc.web.Error, ?proto.EntityCreateResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.transportservice.EntityCreateResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.EntityCreateResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.transportservice.TransportCompanyServiceClient.prototype.createOrUpdateTransportCompany =
+proto.TransportCompanyServiceClient.prototype.createOrUpdateTransportCompany =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/transportservice.TransportCompanyService/createOrUpdateTransportCompany',
+      '/TransportCompanyService/createOrUpdateTransportCompany',
       request,
       metadata,
       methodInfo_TransportCompanyService_createOrUpdateTransportCompany,
@@ -676,14 +675,14 @@ proto.transportservice.TransportCompanyServiceClient.prototype.createOrUpdateTra
 
 
 /**
- * @param {!proto.transportservice.TransportCompany} request The
+ * @param {!proto.TransportCompany} request The
  *     request proto
  * @param {!Object<string, string>} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.transportservice.EntityCreateResponse>}
+ * @return {!Promise<!proto.EntityCreateResponse>}
  *     The XHR Node Readable Stream
  */
-proto.transportservice.TransportCompanyServicePromiseClient.prototype.createOrUpdateTransportCompany =
+proto.TransportCompanyServicePromiseClient.prototype.createOrUpdateTransportCompany =
     function(request, metadata) {
   return new Promise((resolve, reject) => {
     this.delegateClient_.createOrUpdateTransportCompany(
@@ -697,33 +696,33 @@ proto.transportservice.TransportCompanyServicePromiseClient.prototype.createOrUp
 /**
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.transportservice.EntityIdRequest,
- *   !proto.transportservice.TransportCompany>}
+ *   !proto.EntityIdRequest,
+ *   !proto.TransportCompany>}
  */
 const methodInfo_TransportCompanyService_readByIdTransportCompany = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.transportservice.TransportCompany,
-  /** @param {!proto.transportservice.EntityIdRequest} request */
+  proto.TransportCompany,
+  /** @param {!proto.EntityIdRequest} request */
   function(request) {
     return request.serializeBinary();
   },
-  proto.transportservice.TransportCompany.deserializeBinary
+  proto.TransportCompany.deserializeBinary
 );
 
 
 /**
- * @param {!proto.transportservice.EntityIdRequest} request The
+ * @param {!proto.EntityIdRequest} request The
  *     request proto
  * @param {!Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.Error, ?proto.transportservice.TransportCompany)}
+ * @param {function(?grpc.web.Error, ?proto.TransportCompany)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.transportservice.TransportCompany>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.TransportCompany>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.transportservice.TransportCompanyServiceClient.prototype.readByIdTransportCompany =
+proto.TransportCompanyServiceClient.prototype.readByIdTransportCompany =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/transportservice.TransportCompanyService/readByIdTransportCompany',
+      '/TransportCompanyService/readByIdTransportCompany',
       request,
       metadata,
       methodInfo_TransportCompanyService_readByIdTransportCompany,
@@ -732,14 +731,14 @@ proto.transportservice.TransportCompanyServiceClient.prototype.readByIdTransport
 
 
 /**
- * @param {!proto.transportservice.EntityIdRequest} request The
+ * @param {!proto.EntityIdRequest} request The
  *     request proto
  * @param {!Object<string, string>} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.transportservice.TransportCompany>}
+ * @return {!Promise<!proto.TransportCompany>}
  *     The XHR Node Readable Stream
  */
-proto.transportservice.TransportCompanyServicePromiseClient.prototype.readByIdTransportCompany =
+proto.TransportCompanyServicePromiseClient.prototype.readByIdTransportCompany =
     function(request, metadata) {
   return new Promise((resolve, reject) => {
     this.delegateClient_.readByIdTransportCompany(
@@ -754,15 +753,15 @@ proto.transportservice.TransportCompanyServicePromiseClient.prototype.readByIdTr
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
  *   !proto.Empty,
- *   !proto.transportservice.TransportCompanyAllResponse>}
+ *   !proto.TransportCompanyAllResponse>}
  */
 const methodInfo_TransportCompanyService_readAllTransportCompanies = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.transportservice.TransportCompanyAllResponse,
+  proto.TransportCompanyAllResponse,
   /** @param {!proto.Empty} request */
   function(request) {
     return request.serializeBinary();
   },
-  proto.transportservice.TransportCompanyAllResponse.deserializeBinary
+  proto.TransportCompanyAllResponse.deserializeBinary
 );
 
 
@@ -771,15 +770,15 @@ const methodInfo_TransportCompanyService_readAllTransportCompanies = new grpc.we
  *     request proto
  * @param {!Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.Error, ?proto.transportservice.TransportCompanyAllResponse)}
+ * @param {function(?grpc.web.Error, ?proto.TransportCompanyAllResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.transportservice.TransportCompanyAllResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.TransportCompanyAllResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.transportservice.TransportCompanyServiceClient.prototype.readAllTransportCompanies =
+proto.TransportCompanyServiceClient.prototype.readAllTransportCompanies =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/transportservice.TransportCompanyService/readAllTransportCompanies',
+      '/TransportCompanyService/readAllTransportCompanies',
       request,
       metadata,
       methodInfo_TransportCompanyService_readAllTransportCompanies,
@@ -792,10 +791,10 @@ proto.transportservice.TransportCompanyServiceClient.prototype.readAllTransportC
  *     request proto
  * @param {!Object<string, string>} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.transportservice.TransportCompanyAllResponse>}
+ * @return {!Promise<!proto.TransportCompanyAllResponse>}
  *     The XHR Node Readable Stream
  */
-proto.transportservice.TransportCompanyServicePromiseClient.prototype.readAllTransportCompanies =
+proto.TransportCompanyServicePromiseClient.prototype.readAllTransportCompanies =
     function(request, metadata) {
   return new Promise((resolve, reject) => {
     this.delegateClient_.readAllTransportCompanies(
@@ -809,33 +808,33 @@ proto.transportservice.TransportCompanyServicePromiseClient.prototype.readAllTra
 /**
  * @const
  * @type {!grpc.web.AbstractClientBase.MethodInfo<
- *   !proto.transportservice.EntityIdRequest,
- *   !proto.transportservice.EntityDeleteResponse>}
+ *   !proto.EntityIdRequest,
+ *   !proto.EntityDeleteResponse>}
  */
 const methodInfo_TransportCompanyService_deleteByIdTransportCompany = new grpc.web.AbstractClientBase.MethodInfo(
-  proto.transportservice.EntityDeleteResponse,
-  /** @param {!proto.transportservice.EntityIdRequest} request */
+  proto.EntityDeleteResponse,
+  /** @param {!proto.EntityIdRequest} request */
   function(request) {
     return request.serializeBinary();
   },
-  proto.transportservice.EntityDeleteResponse.deserializeBinary
+  proto.EntityDeleteResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.transportservice.EntityIdRequest} request The
+ * @param {!proto.EntityIdRequest} request The
  *     request proto
  * @param {!Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.Error, ?proto.transportservice.EntityDeleteResponse)}
+ * @param {function(?grpc.web.Error, ?proto.EntityDeleteResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.transportservice.EntityDeleteResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.EntityDeleteResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.transportservice.TransportCompanyServiceClient.prototype.deleteByIdTransportCompany =
+proto.TransportCompanyServiceClient.prototype.deleteByIdTransportCompany =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/transportservice.TransportCompanyService/deleteByIdTransportCompany',
+      '/TransportCompanyService/deleteByIdTransportCompany',
       request,
       metadata,
       methodInfo_TransportCompanyService_deleteByIdTransportCompany,
@@ -844,14 +843,14 @@ proto.transportservice.TransportCompanyServiceClient.prototype.deleteByIdTranspo
 
 
 /**
- * @param {!proto.transportservice.EntityIdRequest} request The
+ * @param {!proto.EntityIdRequest} request The
  *     request proto
  * @param {!Object<string, string>} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.transportservice.EntityDeleteResponse>}
+ * @return {!Promise<!proto.EntityDeleteResponse>}
  *     The XHR Node Readable Stream
  */
-proto.transportservice.TransportCompanyServicePromiseClient.prototype.deleteByIdTransportCompany =
+proto.TransportCompanyServicePromiseClient.prototype.deleteByIdTransportCompany =
     function(request, metadata) {
   return new Promise((resolve, reject) => {
     this.delegateClient_.deleteByIdTransportCompany(
@@ -862,5 +861,5 @@ proto.transportservice.TransportCompanyServicePromiseClient.prototype.deleteById
 };
 
 
-module.exports = proto.transportservice;
+module.exports = proto;
 
