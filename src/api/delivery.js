@@ -1,10 +1,11 @@
-const {Delivery, DeliveryStatusEnum, DeliveryItem, User, DeliveryAllResponse} = require('../grpc-generated/Delivery_pb.js');
-const {Store, Empty} = require('../grpc-generated/common_pb.js');
+const {Delivery, DeliveryItem, User, DeliveryAllResponse, DeliveryIdRequest, DeliveryItemAllResponse} = require('../grpc-generated/Delivery_pb.js');
+const {Empty} = require('../grpc-generated/common_pb.js');
+const {Store} = require('../grpc-generated/stores_pb.js');
 var Config = require('Config');
 const {DeliveryServiceClient} = require('../grpc-generated/Delivery_grpc_web_pb.js');
-var clientDelivery = new DeliveryServiceClient(Config.backendAPITestEndpoint);
+var clientDelivery = new DeliveryServiceClient(Config.backendRFPEndpoint);
 
-module.export = {
+module.exports = {
     Deliveries: {
         sendNewDeliveries : function () {
             return new Promise((resolve, reject) => {
@@ -12,17 +13,23 @@ module.export = {
                 clientDelivery.readAllDelivery(request, {}, (err, deliveries) => {
                     var listDeliveries = [];
                     var d = deliveries.getDeliveriesList();
-                    d.forEach(function(item, index){
+                    console.log("SIZE  " + d.length);
+                    d.forEach(function(item, index, p){
                         var delivery = new Object();
                         delivery.id = item.getId();
                         delivery.lat = item.getLat();
                         delivery.lon = item.getLon();
+                        console.log("delivery.lon  " + delivery.lon);
                         delivery.timeWindow = item.getTimewindow();
-                        delivery.createUser.id = item.getCreateuser().getId();
-                        delivery.createUser.name = item.getCreateuser().getName();
+                        //let createUser = new User();
+                        //createUser = item.getCreateuser();
+                        //console.log("CreateUser.name  " + createUser.getName());
+                        delivery.createUserId = item.getCreateuser().getId();
+                        delivery.createUserName = item.getCreateuser().getName();
+                        console.log("delivery.createUser.name  " + delivery.createUserName);
                         delivery.createdDate = item.getCreateddate();
-                        delivery.lastUpdateUser.id = item.getLastupdateuser().getId();
-                        delivery.lastUpdateUser.name = item.getLastupdateuser().getName();
+                        delivery.lastUpdateUserId = item.getLastupdateuser().getId();
+                        delivery.lastUpdateUserName = item.getLastupdateuser().getName();
                         delivery.lastUpdateDate = item.getLastupdatedate();
                         delivery.status = item.getStatus();
                         delivery.deliveryDateMin = item.getDeliverydatemin();
@@ -33,14 +40,16 @@ module.export = {
                         delivery.house = item.getHouse();
                         delivery.entrance = item.getEntrance();
                         delivery.flat = item.getFlat();
+                        console.log("****** " + delivery.flat + "  " + delivery.lastUpdateUserName) ;
+                        /*
                         delivery.items = [];
                         let _delItems = item.getItemsList();
-                        _delItems.forEach(function(it, index){
+                        _delItems.forEach(function(it, index, _delItems){
                             let delitem = new Object();
                                 delitem.id = it.getId();
                                 delitem.productlmcode = it.getProductlmcode();
                                 delitem.productlmname = it.getProductlmname();
-                                delitem.weight = it.getwWeight();
+                                delitem.weight = it.getWeight();
                                 delitem.volume = it.getVolume();
                                 delitem.width = it.getWidth();
                                 delitem.length = it.getLength();
@@ -50,19 +59,52 @@ module.export = {
                                 delitem.status = it.getStatus();
                                 delivery.items.push(delitem);
                         });
-                        delivery.store.id = item.getStore().getId();
-                        delivery.store.type = item.getStore().getType();
-                        delivery.store.name = item.getStore().getName();
-                        delivery.store.code = item.getStore().getCode();
-                        delivery.store.address = item.getStore().getAddress();
-                        delivery.store.lat = item.getStore().getLat();
-                        delivery.store.lon = item.getStore().getLon();
-                        delivery.store.comment = item.getStore().getComment();
+                        console.log("delivery.items SIZE " + delivery.items.length);
+                        */
+                        delivery.storeId = item.getStore().getId();
+                        delivery.storeType = item.getStore().getType();
+                        delivery.storeName = item.getStore().getName();
+                        delivery.storeCode = item.getStore().getCode();
+                        delivery.storeAddress = item.getStore().getAddress();
+                        delivery.storeLat = item.getStore().getLat();
+                        delivery.storeLon = item.getStore().getLon();
+                        delivery.storeComment = item.getStore().getComment();
                         listDeliveries.push(delivery);
                     });
+                    console.log(JSON.stringify(listDeliveries));
                     resolve(listDeliveries);
                 });
             });
+        },
+        getItemsForDelivery: function(id){
+            return new Promise((resolve, reject) => {
+                var request = new DeliveryIdRequest();
+                request.setId(id);
+                clientDelivery.readAllDeliveryItemForDeliveryById(request, {}, (err, delivery) =>{
+                    var d = delivery.getItemsList();
+                    console.log(JSON.stringify(d));
+                    var items = [];
+                    
+                    d.forEach(function(it, index, d){
+                        let delitem = new Object();
+                            delitem.id = it.getId();
+                            delitem.productlmcode = it.getProductlmcode();
+                            delitem.productlmname = it.getProductlmname();
+                            delitem.weight = it.getWeight();
+                            delitem.height = it.getHeight();
+                            delitem.width = it.getWidth();
+                            delitem.length = it.getLength();
+                            delitem.quantity = it.getQuantity();
+                            delitem.loadedquantity = it.getLoadedquantity();
+                            delitem.approvedquantity = it.getApprovedquantity();
+                            delitem.status = it.getStatus();
+                            items.push(delitem);
+                    });
+                    console.log("items SIZE " + items.length);
+                    resolve(items);
+                });
+            });
+
         }
     }
 };

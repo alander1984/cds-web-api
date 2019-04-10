@@ -42,7 +42,11 @@ module.exports = {
         	var request = new EntityIdRequest();
         	request.setId(id);
         	clientPermission.readByIdPermission(request, {}, (err, permission) => {
-      			resolve(permission);
+        	    var p = new Object();
+        	    p.id = permission.getId();
+        	    p.name = permission.getName();
+        	    p.code = permission.getCode();
+      			resolve(p);
         	}); 
 	   });
     },
@@ -52,6 +56,7 @@ module.exports = {
         	request.setId(id);
         	console.log("REQUEST.DELETE.ID  " + request.getId());
         	clientPermission.deleteByIdPermission(request, {}, (err, response) => {
+        	    
       			resolve(response);
         	}); 
 	   });

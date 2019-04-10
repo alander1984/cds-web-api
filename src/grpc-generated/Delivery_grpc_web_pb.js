@@ -131,5 +131,61 @@ proto.DeliveryServicePromiseClient.prototype.readAllDelivery =
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.DeliveryIdRequest,
+ *   !proto.DeliveryItemAllResponse>}
+ */
+const methodInfo_DeliveryService_readAllDeliveryItemForDeliveryById = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.DeliveryItemAllResponse,
+  /** @param {!proto.DeliveryIdRequest} request */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.DeliveryItemAllResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.DeliveryIdRequest} request The
+ *     request proto
+ * @param {!Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.Error, ?proto.DeliveryItemAllResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.DeliveryItemAllResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.DeliveryServiceClient.prototype.readAllDeliveryItemForDeliveryById =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/DeliveryService/readAllDeliveryItemForDeliveryById',
+      request,
+      metadata,
+      methodInfo_DeliveryService_readAllDeliveryItemForDeliveryById,
+      callback);
+};
+
+
+/**
+ * @param {!proto.DeliveryIdRequest} request The
+ *     request proto
+ * @param {!Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.DeliveryItemAllResponse>}
+ *     The XHR Node Readable Stream
+ */
+proto.DeliveryServicePromiseClient.prototype.readAllDeliveryItemForDeliveryById =
+    function(request, metadata) {
+  return new Promise((resolve, reject) => {
+    this.delegateClient_.readAllDeliveryItemForDeliveryById(
+      request, metadata, (error, response) => {
+        error ? reject(error) : resolve(response);
+      });
+  });
+};
+
+
 module.exports = proto;
 
