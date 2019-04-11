@@ -17,6 +17,8 @@ var common_pb = require('./common_pb.js')
 var Transport_pb = require('./Transport_pb.js')
 
 var Delivery_pb = require('./Delivery_pb.js')
+
+var stores_pb = require('./stores_pb.js')
 const proto = require('./routes_pb.js');
 
 /**
