@@ -47,6 +47,11 @@ module.exports = {
         	client.getByIdStore(request, {}, (err, store) => {
         	    let responseStore = new Object();
         	    responseStore.id = store.getId();
+        	    if(store.getType() == 0) {
+        	        responseStore.type = 'OFFLINE';
+        	    } else if(store.getType() == 1) {
+        	        responseStore.type = 'ONLINE';
+        	    }
         	    responseStore.type = store.getType();
         	    responseStore.name = store.getName();
         	    responseStore.address = store.getAddress();
@@ -54,7 +59,7 @@ module.exports = {
         	    responseStore.lon = store.getLon();
         	    responseStore.lat = store.getLat();
         	    responseStore.comment = store.getComment();
-      			resolve(store);
+      			resolve(responseStore);
         	}); 
 	   });
     }, 
