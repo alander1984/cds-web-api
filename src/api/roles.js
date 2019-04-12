@@ -1,7 +1,7 @@
 const {Empty, Role, Permission, RoleAllResponse, EntityCreateResponse, EntityIdRequest, EntityDeleteResponse} = require('../grpc-generated/AuthEntity_pb.js');
 var Config = require('Config');
 const {RoleServiceClient} = require('../grpc-generated/AuthEntity_grpc_web_pb.js');
-var clientRole = new RoleServiceClient(Config.backendAPITestEndpoint);
+var clientRole = new RoleServiceClient(Config.authAPIendpoint);
 
 module.exports = {
   Roles: {
