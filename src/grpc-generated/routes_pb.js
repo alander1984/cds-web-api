@@ -119,48 +119,49 @@ proto.Route.repeatedFields_ = [3];
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto suitable for use in Soy templates.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
- * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
- *     for transitional soy proto support: http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.Route.prototype.toObject = function(opt_includeInstance) {
-  return proto.Route.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Whether to include the JSPB
- *     instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.Route} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.Route.toObject = function(includeInstance, msg) {
-  var obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    name: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    routerpointsList: jspb.Message.toObjectList(msg.getRouterpointsList(),
-    proto.RoutePoint.toObject, includeInstance),
-    deliverydate: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    optimizationtask: (f = msg.getOptimizationtask()) && proto.OptimizationTask.toObject(includeInstance, f),
-    vehicle: (f = msg.getVehicle()) && Transport_pb.Vehicle.toObject(includeInstance, f),
-    transportcompany: (f = msg.getTransportcompany()) && Transport_pb.TransportCompany.toObject(includeInstance, f),
-    store: (f = msg.getStore()) && stores_pb.Store.toObject(includeInstance, f)
+  /**
+   * Creates an object representation of this proto suitable for use in Soy templates.
+   * Field names that are reserved in JavaScript and will be renamed to pb_name.
+   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+   * For the list of reserved names please see:
+   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+   *     for transitional soy proto support: http://goto/soy-param-migration
+   * @return {!Object}
+   */
+  proto.Route.prototype.toObject = function(opt_includeInstance) {
+    return proto.Route.toObject(opt_includeInstance, this);
   };
 
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
+
+  /**
+   * Static version of the {@see toObject} method.
+   * @param {boolean|undefined} includeInstance Whether to include the JSPB
+   *     instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @param {!proto.Route} msg The msg instance to transform.
+   * @return {!Object}
+   * @suppress {unusedLocalVariables} f is only used for nested messages
+   */
+  proto.Route.toObject = function(includeInstance, msg) {
+    var obj = {
+      id: jspb.Message.getFieldWithDefault(msg, 1, 0),
+      name: jspb.Message.getFieldWithDefault(msg, 2, ""),
+      routerpointsList: jspb.Message.toObjectList(msg.getRouterpointsList(),
+          proto.RoutePoint.toObject, includeInstance),
+      deliverydate: jspb.Message.getFieldWithDefault(msg, 4, ""),
+      optimizationtask: (f = msg.getOptimizationtask()) && proto.OptimizationTask.toObject(includeInstance, f),
+      vehicle: (f = msg.getVehicle()) && Transport_pb.Vehicle.toObject(includeInstance, f),
+      transportcompany: (f = msg.getTransportcompany()) && Transport_pb.TransportCompany.toObject(includeInstance, f),
+      store: (f = msg.getStore()) && stores_pb.Store.toObject(includeInstance, f),
+      driver: (f = msg.getDriver()) && Transport_pb.Driver.toObject(includeInstance, f)
+    };
+
+    if (includeInstance) {
+      obj.$jspbMessageInstance = msg;
+    }
+    return obj;
+  };
 }
 
 
@@ -190,46 +191,51 @@ proto.Route.deserializeBinaryFromReader = function(msg, reader) {
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = /** @type {number} */ (reader.readInt64());
-      msg.setId(value);
-      break;
-    case 2:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setName(value);
-      break;
-    case 3:
-      var value = new proto.RoutePoint;
-      reader.readMessage(value,proto.RoutePoint.deserializeBinaryFromReader);
-      msg.addRouterpoints(value);
-      break;
-    case 4:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setDeliverydate(value);
-      break;
-    case 5:
-      var value = new proto.OptimizationTask;
-      reader.readMessage(value,proto.OptimizationTask.deserializeBinaryFromReader);
-      msg.setOptimizationtask(value);
-      break;
-    case 6:
-      var value = new Transport_pb.Vehicle;
-      reader.readMessage(value,Transport_pb.Vehicle.deserializeBinaryFromReader);
-      msg.setVehicle(value);
-      break;
-    case 7:
-      var value = new Transport_pb.TransportCompany;
-      reader.readMessage(value,Transport_pb.TransportCompany.deserializeBinaryFromReader);
-      msg.setTransportcompany(value);
-      break;
-    case 8:
-      var value = new stores_pb.Store;
-      reader.readMessage(value,stores_pb.Store.deserializeBinaryFromReader);
-      msg.setStore(value);
-      break;
-    default:
-      reader.skipField();
-      break;
+      case 1:
+        var value = /** @type {number} */ (reader.readInt64());
+        msg.setId(value);
+        break;
+      case 2:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setName(value);
+        break;
+      case 3:
+        var value = new proto.RoutePoint;
+        reader.readMessage(value,proto.RoutePoint.deserializeBinaryFromReader);
+        msg.addRouterpoints(value);
+        break;
+      case 4:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setDeliverydate(value);
+        break;
+      case 5:
+        var value = new proto.OptimizationTask;
+        reader.readMessage(value,proto.OptimizationTask.deserializeBinaryFromReader);
+        msg.setOptimizationtask(value);
+        break;
+      case 6:
+        var value = new Transport_pb.Vehicle;
+        reader.readMessage(value,Transport_pb.Vehicle.deserializeBinaryFromReader);
+        msg.setVehicle(value);
+        break;
+      case 7:
+        var value = new Transport_pb.TransportCompany;
+        reader.readMessage(value,Transport_pb.TransportCompany.deserializeBinaryFromReader);
+        msg.setTransportcompany(value);
+        break;
+      case 8:
+        var value = new stores_pb.Store;
+        reader.readMessage(value,stores_pb.Store.deserializeBinaryFromReader);
+        msg.setStore(value);
+        break;
+      case 9:
+        var value = new Transport_pb.Driver;
+        reader.readMessage(value,Transport_pb.Driver.deserializeBinaryFromReader);
+        msg.setDriver(value);
+        break;
+      default:
+        reader.skipField();
+        break;
     }
   }
   return msg;
@@ -259,62 +265,70 @@ proto.Route.serializeBinaryToWriter = function(message, writer) {
   f = message.getId();
   if (f !== 0) {
     writer.writeInt64(
-      1,
-      f
+        1,
+        f
     );
   }
   f = message.getName();
   if (f.length > 0) {
     writer.writeString(
-      2,
-      f
+        2,
+        f
     );
   }
   f = message.getRouterpointsList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
-      3,
-      f,
-      proto.RoutePoint.serializeBinaryToWriter
+        3,
+        f,
+        proto.RoutePoint.serializeBinaryToWriter
     );
   }
   f = message.getDeliverydate();
   if (f.length > 0) {
     writer.writeString(
-      4,
-      f
+        4,
+        f
     );
   }
   f = message.getOptimizationtask();
   if (f != null) {
     writer.writeMessage(
-      5,
-      f,
-      proto.OptimizationTask.serializeBinaryToWriter
+        5,
+        f,
+        proto.OptimizationTask.serializeBinaryToWriter
     );
   }
   f = message.getVehicle();
   if (f != null) {
     writer.writeMessage(
-      6,
-      f,
-      Transport_pb.Vehicle.serializeBinaryToWriter
+        6,
+        f,
+        Transport_pb.Vehicle.serializeBinaryToWriter
     );
   }
   f = message.getTransportcompany();
   if (f != null) {
     writer.writeMessage(
-      7,
-      f,
-      Transport_pb.TransportCompany.serializeBinaryToWriter
+        7,
+        f,
+        Transport_pb.TransportCompany.serializeBinaryToWriter
     );
   }
   f = message.getStore();
   if (f != null) {
     writer.writeMessage(
-      8,
-      f,
-      stores_pb.Store.serializeBinaryToWriter
+        8,
+        f,
+        stores_pb.Store.serializeBinaryToWriter
+    );
+  }
+  f = message.getDriver();
+  if (f != null) {
+    writer.writeMessage(
+        9,
+        f,
+        Transport_pb.Driver.serializeBinaryToWriter
     );
   }
 };
@@ -356,7 +370,7 @@ proto.Route.prototype.setName = function(value) {
  */
 proto.Route.prototype.getRouterpointsList = function() {
   return /** @type{!Array<!proto.RoutePoint>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.RoutePoint, 3));
+      jspb.Message.getRepeatedWrapperField(this, proto.RoutePoint, 3));
 };
 
 
@@ -405,7 +419,7 @@ proto.Route.prototype.setDeliverydate = function(value) {
  */
 proto.Route.prototype.getOptimizationtask = function() {
   return /** @type{?proto.OptimizationTask} */ (
-    jspb.Message.getWrapperField(this, proto.OptimizationTask, 5));
+      jspb.Message.getWrapperField(this, proto.OptimizationTask, 5));
 };
 
 
@@ -438,7 +452,7 @@ proto.Route.prototype.hasOptimizationtask = function() {
  */
 proto.Route.prototype.getVehicle = function() {
   return /** @type{?proto.Vehicle} */ (
-    jspb.Message.getWrapperField(this, Transport_pb.Vehicle, 6));
+      jspb.Message.getWrapperField(this, Transport_pb.Vehicle, 6));
 };
 
 
@@ -471,7 +485,7 @@ proto.Route.prototype.hasVehicle = function() {
  */
 proto.Route.prototype.getTransportcompany = function() {
   return /** @type{?proto.TransportCompany} */ (
-    jspb.Message.getWrapperField(this, Transport_pb.TransportCompany, 7));
+      jspb.Message.getWrapperField(this, Transport_pb.TransportCompany, 7));
 };
 
 
@@ -504,7 +518,7 @@ proto.Route.prototype.hasTransportcompany = function() {
  */
 proto.Route.prototype.getStore = function() {
   return /** @type{?proto.Store} */ (
-    jspb.Message.getWrapperField(this, stores_pb.Store, 8));
+      jspb.Message.getWrapperField(this, stores_pb.Store, 8));
 };
 
 
@@ -531,47 +545,80 @@ proto.Route.prototype.hasStore = function() {
 };
 
 
+/**
+ * optional Driver driver = 9;
+ * @return {?proto.Driver}
+ */
+proto.Route.prototype.getDriver = function() {
+  return /** @type{?proto.Driver} */ (
+      jspb.Message.getWrapperField(this, Transport_pb.Driver, 9));
+};
+
+
+/** @param {?proto.Driver|undefined} value */
+proto.Route.prototype.setDriver = function(value) {
+  jspb.Message.setWrapperField(this, 9, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ */
+proto.Route.prototype.clearDriver = function() {
+  this.setDriver(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.Route.prototype.hasDriver = function() {
+  return jspb.Message.getField(this, 9) != null;
+};
+
+
 
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto suitable for use in Soy templates.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
- * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
- *     for transitional soy proto support: http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.RoutePoint.prototype.toObject = function(opt_includeInstance) {
-  return proto.RoutePoint.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Whether to include the JSPB
- *     instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.RoutePoint} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.RoutePoint.toObject = function(includeInstance, msg) {
-  var obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    delivery: (f = msg.getDelivery()) && Delivery_pb.Delivery.toObject(includeInstance, f),
-    arrivaltime: +jspb.Message.getFieldWithDefault(msg, 3, 0.0),
-    pos: jspb.Message.getFieldWithDefault(msg, 4, 0)
+  /**
+   * Creates an object representation of this proto suitable for use in Soy templates.
+   * Field names that are reserved in JavaScript and will be renamed to pb_name.
+   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+   * For the list of reserved names please see:
+   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+   *     for transitional soy proto support: http://goto/soy-param-migration
+   * @return {!Object}
+   */
+  proto.RoutePoint.prototype.toObject = function(opt_includeInstance) {
+    return proto.RoutePoint.toObject(opt_includeInstance, this);
   };
 
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
+
+  /**
+   * Static version of the {@see toObject} method.
+   * @param {boolean|undefined} includeInstance Whether to include the JSPB
+   *     instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @param {!proto.RoutePoint} msg The msg instance to transform.
+   * @return {!Object}
+   * @suppress {unusedLocalVariables} f is only used for nested messages
+   */
+  proto.RoutePoint.toObject = function(includeInstance, msg) {
+    var obj = {
+      id: jspb.Message.getFieldWithDefault(msg, 1, 0),
+      delivery: (f = msg.getDelivery()) && Delivery_pb.Delivery.toObject(includeInstance, f),
+      arrivaltime: +jspb.Message.getFieldWithDefault(msg, 3, 0.0),
+      pos: jspb.Message.getFieldWithDefault(msg, 4, 0)
+    };
+
+    if (includeInstance) {
+      obj.$jspbMessageInstance = msg;
+    }
+    return obj;
+  };
 }
 
 
@@ -601,26 +648,26 @@ proto.RoutePoint.deserializeBinaryFromReader = function(msg, reader) {
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = /** @type {number} */ (reader.readInt64());
-      msg.setId(value);
-      break;
-    case 2:
-      var value = new Delivery_pb.Delivery;
-      reader.readMessage(value,Delivery_pb.Delivery.deserializeBinaryFromReader);
-      msg.setDelivery(value);
-      break;
-    case 3:
-      var value = /** @type {number} */ (reader.readDouble());
-      msg.setArrivaltime(value);
-      break;
-    case 4:
-      var value = /** @type {number} */ (reader.readInt32());
-      msg.setPos(value);
-      break;
-    default:
-      reader.skipField();
-      break;
+      case 1:
+        var value = /** @type {number} */ (reader.readInt64());
+        msg.setId(value);
+        break;
+      case 2:
+        var value = new Delivery_pb.Delivery;
+        reader.readMessage(value,Delivery_pb.Delivery.deserializeBinaryFromReader);
+        msg.setDelivery(value);
+        break;
+      case 3:
+        var value = /** @type {number} */ (reader.readDouble());
+        msg.setArrivaltime(value);
+        break;
+      case 4:
+        var value = /** @type {number} */ (reader.readInt32());
+        msg.setPos(value);
+        break;
+      default:
+        reader.skipField();
+        break;
     }
   }
   return msg;
@@ -650,30 +697,30 @@ proto.RoutePoint.serializeBinaryToWriter = function(message, writer) {
   f = message.getId();
   if (f !== 0) {
     writer.writeInt64(
-      1,
-      f
+        1,
+        f
     );
   }
   f = message.getDelivery();
   if (f != null) {
     writer.writeMessage(
-      2,
-      f,
-      Delivery_pb.Delivery.serializeBinaryToWriter
+        2,
+        f,
+        Delivery_pb.Delivery.serializeBinaryToWriter
     );
   }
   f = message.getArrivaltime();
   if (f !== 0.0) {
     writer.writeDouble(
-      3,
-      f
+        3,
+        f
     );
   }
   f = message.getPos();
   if (f !== 0) {
     writer.writeInt32(
-      4,
-      f
+        4,
+        f
     );
   }
 };
@@ -700,7 +747,7 @@ proto.RoutePoint.prototype.setId = function(value) {
  */
 proto.RoutePoint.prototype.getDelivery = function() {
   return /** @type{?proto.Delivery} */ (
-    jspb.Message.getWrapperField(this, Delivery_pb.Delivery, 2));
+      jspb.Message.getWrapperField(this, Delivery_pb.Delivery, 2));
 };
 
 
@@ -768,49 +815,49 @@ proto.OptimizationTask.repeatedFields_ = [5,6,7];
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto suitable for use in Soy templates.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
- * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
- *     for transitional soy proto support: http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.OptimizationTask.prototype.toObject = function(opt_includeInstance) {
-  return proto.OptimizationTask.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Whether to include the JSPB
- *     instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.OptimizationTask} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.OptimizationTask.toObject = function(includeInstance, msg) {
-  var obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    createdatetime: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    startdatetime: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    completedatetime: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    deliveriesList: jspb.Message.toObjectList(msg.getDeliveriesList(),
-    Delivery_pb.Delivery.toObject, includeInstance),
-    vehiclesList: jspb.Message.toObjectList(msg.getVehiclesList(),
-    Transport_pb.Vehicle.toObject, includeInstance),
-    itemsList: jspb.Message.toObjectList(msg.getItemsList(),
-    proto.Route.toObject, includeInstance)
+  /**
+   * Creates an object representation of this proto suitable for use in Soy templates.
+   * Field names that are reserved in JavaScript and will be renamed to pb_name.
+   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+   * For the list of reserved names please see:
+   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+   *     for transitional soy proto support: http://goto/soy-param-migration
+   * @return {!Object}
+   */
+  proto.OptimizationTask.prototype.toObject = function(opt_includeInstance) {
+    return proto.OptimizationTask.toObject(opt_includeInstance, this);
   };
 
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
+
+  /**
+   * Static version of the {@see toObject} method.
+   * @param {boolean|undefined} includeInstance Whether to include the JSPB
+   *     instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @param {!proto.OptimizationTask} msg The msg instance to transform.
+   * @return {!Object}
+   * @suppress {unusedLocalVariables} f is only used for nested messages
+   */
+  proto.OptimizationTask.toObject = function(includeInstance, msg) {
+    var obj = {
+      id: jspb.Message.getFieldWithDefault(msg, 1, 0),
+      createdatetime: jspb.Message.getFieldWithDefault(msg, 2, ""),
+      startdatetime: jspb.Message.getFieldWithDefault(msg, 3, ""),
+      completedatetime: jspb.Message.getFieldWithDefault(msg, 4, ""),
+      deliveriesList: jspb.Message.toObjectList(msg.getDeliveriesList(),
+          Delivery_pb.Delivery.toObject, includeInstance),
+      vehiclesList: jspb.Message.toObjectList(msg.getVehiclesList(),
+          Transport_pb.Vehicle.toObject, includeInstance),
+      itemsList: jspb.Message.toObjectList(msg.getItemsList(),
+          proto.Route.toObject, includeInstance)
+    };
+
+    if (includeInstance) {
+      obj.$jspbMessageInstance = msg;
+    }
+    return obj;
+  };
 }
 
 
@@ -840,40 +887,40 @@ proto.OptimizationTask.deserializeBinaryFromReader = function(msg, reader) {
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = /** @type {number} */ (reader.readInt64());
-      msg.setId(value);
-      break;
-    case 2:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setCreatedatetime(value);
-      break;
-    case 3:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setStartdatetime(value);
-      break;
-    case 4:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setCompletedatetime(value);
-      break;
-    case 5:
-      var value = new Delivery_pb.Delivery;
-      reader.readMessage(value,Delivery_pb.Delivery.deserializeBinaryFromReader);
-      msg.addDeliveries(value);
-      break;
-    case 6:
-      var value = new Transport_pb.Vehicle;
-      reader.readMessage(value,Transport_pb.Vehicle.deserializeBinaryFromReader);
-      msg.addVehicles(value);
-      break;
-    case 7:
-      var value = new proto.Route;
-      reader.readMessage(value,proto.Route.deserializeBinaryFromReader);
-      msg.addItems(value);
-      break;
-    default:
-      reader.skipField();
-      break;
+      case 1:
+        var value = /** @type {number} */ (reader.readInt64());
+        msg.setId(value);
+        break;
+      case 2:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setCreatedatetime(value);
+        break;
+      case 3:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setStartdatetime(value);
+        break;
+      case 4:
+        var value = /** @type {string} */ (reader.readString());
+        msg.setCompletedatetime(value);
+        break;
+      case 5:
+        var value = new Delivery_pb.Delivery;
+        reader.readMessage(value,Delivery_pb.Delivery.deserializeBinaryFromReader);
+        msg.addDeliveries(value);
+        break;
+      case 6:
+        var value = new Transport_pb.Vehicle;
+        reader.readMessage(value,Transport_pb.Vehicle.deserializeBinaryFromReader);
+        msg.addVehicles(value);
+        break;
+      case 7:
+        var value = new proto.Route;
+        reader.readMessage(value,proto.Route.deserializeBinaryFromReader);
+        msg.addItems(value);
+        break;
+      default:
+        reader.skipField();
+        break;
     }
   }
   return msg;
@@ -903,53 +950,53 @@ proto.OptimizationTask.serializeBinaryToWriter = function(message, writer) {
   f = message.getId();
   if (f !== 0) {
     writer.writeInt64(
-      1,
-      f
+        1,
+        f
     );
   }
   f = message.getCreatedatetime();
   if (f.length > 0) {
     writer.writeString(
-      2,
-      f
+        2,
+        f
     );
   }
   f = message.getStartdatetime();
   if (f.length > 0) {
     writer.writeString(
-      3,
-      f
+        3,
+        f
     );
   }
   f = message.getCompletedatetime();
   if (f.length > 0) {
     writer.writeString(
-      4,
-      f
+        4,
+        f
     );
   }
   f = message.getDeliveriesList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
-      5,
-      f,
-      Delivery_pb.Delivery.serializeBinaryToWriter
+        5,
+        f,
+        Delivery_pb.Delivery.serializeBinaryToWriter
     );
   }
   f = message.getVehiclesList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
-      6,
-      f,
-      Transport_pb.Vehicle.serializeBinaryToWriter
+        6,
+        f,
+        Transport_pb.Vehicle.serializeBinaryToWriter
     );
   }
   f = message.getItemsList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
-      7,
-      f,
-      proto.Route.serializeBinaryToWriter
+        7,
+        f,
+        proto.Route.serializeBinaryToWriter
     );
   }
 };
@@ -1033,7 +1080,7 @@ proto.OptimizationTask.prototype.setCompletedatetime = function(value) {
  */
 proto.OptimizationTask.prototype.getDeliveriesList = function() {
   return /** @type{!Array<!proto.Delivery>} */ (
-    jspb.Message.getRepeatedWrapperField(this, Delivery_pb.Delivery, 5));
+      jspb.Message.getRepeatedWrapperField(this, Delivery_pb.Delivery, 5));
 };
 
 
@@ -1067,7 +1114,7 @@ proto.OptimizationTask.prototype.clearDeliveriesList = function() {
  */
 proto.OptimizationTask.prototype.getVehiclesList = function() {
   return /** @type{!Array<!proto.Vehicle>} */ (
-    jspb.Message.getRepeatedWrapperField(this, Transport_pb.Vehicle, 6));
+      jspb.Message.getRepeatedWrapperField(this, Transport_pb.Vehicle, 6));
 };
 
 
@@ -1101,7 +1148,7 @@ proto.OptimizationTask.prototype.clearVehiclesList = function() {
  */
 proto.OptimizationTask.prototype.getItemsList = function() {
   return /** @type{!Array<!proto.Route>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.Route, 7));
+      jspb.Message.getRepeatedWrapperField(this, proto.Route, 7));
 };
 
 
@@ -1140,41 +1187,41 @@ proto.RouteAllResponse.repeatedFields_ = [1];
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto suitable for use in Soy templates.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
- * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
- *     for transitional soy proto support: http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.RouteAllResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.RouteAllResponse.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Whether to include the JSPB
- *     instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.RouteAllResponse} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.RouteAllResponse.toObject = function(includeInstance, msg) {
-  var obj = {
-    routesList: jspb.Message.toObjectList(msg.getRoutesList(),
-    proto.Route.toObject, includeInstance)
+  /**
+   * Creates an object representation of this proto suitable for use in Soy templates.
+   * Field names that are reserved in JavaScript and will be renamed to pb_name.
+   * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+   * For the list of reserved names please see:
+   *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+   * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+   *     for transitional soy proto support: http://goto/soy-param-migration
+   * @return {!Object}
+   */
+  proto.RouteAllResponse.prototype.toObject = function(opt_includeInstance) {
+    return proto.RouteAllResponse.toObject(opt_includeInstance, this);
   };
 
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
+
+  /**
+   * Static version of the {@see toObject} method.
+   * @param {boolean|undefined} includeInstance Whether to include the JSPB
+   *     instance for transitional soy proto support:
+   *     http://goto/soy-param-migration
+   * @param {!proto.RouteAllResponse} msg The msg instance to transform.
+   * @return {!Object}
+   * @suppress {unusedLocalVariables} f is only used for nested messages
+   */
+  proto.RouteAllResponse.toObject = function(includeInstance, msg) {
+    var obj = {
+      routesList: jspb.Message.toObjectList(msg.getRoutesList(),
+          proto.Route.toObject, includeInstance)
+    };
+
+    if (includeInstance) {
+      obj.$jspbMessageInstance = msg;
+    }
+    return obj;
+  };
 }
 
 
@@ -1204,14 +1251,14 @@ proto.RouteAllResponse.deserializeBinaryFromReader = function(msg, reader) {
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new proto.Route;
-      reader.readMessage(value,proto.Route.deserializeBinaryFromReader);
-      msg.addRoutes(value);
-      break;
-    default:
-      reader.skipField();
-      break;
+      case 1:
+        var value = new proto.Route;
+        reader.readMessage(value,proto.Route.deserializeBinaryFromReader);
+        msg.addRoutes(value);
+        break;
+      default:
+        reader.skipField();
+        break;
     }
   }
   return msg;
@@ -1241,9 +1288,9 @@ proto.RouteAllResponse.serializeBinaryToWriter = function(message, writer) {
   f = message.getRoutesList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
-      1,
-      f,
-      proto.Route.serializeBinaryToWriter
+        1,
+        f,
+        proto.Route.serializeBinaryToWriter
     );
   }
 };
@@ -1255,7 +1302,7 @@ proto.RouteAllResponse.serializeBinaryToWriter = function(message, writer) {
  */
 proto.RouteAllResponse.prototype.getRoutesList = function() {
   return /** @type{!Array<!proto.Route>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.Route, 1));
+      jspb.Message.getRepeatedWrapperField(this, proto.Route, 1));
 };
 
 

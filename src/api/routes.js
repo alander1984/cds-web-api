@@ -108,11 +108,19 @@ module.exports = {
             let store = {};
             store.id = _store.getId();
             store.name = _store.getName();
-            console.log("Store is : " + store.id + " - " + store.name);
             route.store = store;
 
-            console.log("Item of getDriversList - " + item);
+            let _driver = item.getDriver();
+            let driver = {};
+            driver.id = _driver.getId();
+            driver.name = _driver.getName();
+            driver.surname = _driver.getSurname();
+            driver.patronymic = _driver.getPatronymic();
+
+            route.driver = driver;
+
             listRoutes.push(route);
+
           });
           resolve(listRoutes);
         });
@@ -126,7 +134,7 @@ module.exports = {
         if (route.id) {
           request.setId(route.id);
         }
-        
+
         request.setName(route.name);
         request.setDeliverydate(route.deliveryDate);
 
@@ -142,12 +150,16 @@ module.exports = {
         let _st = new Store();
         _st.setId(route.storeid);
         request.setStore(_st);
-        
+
         // let _ot = new OptimizationTask();
         // _ot.setId(route.optimizationtask.id);
         // request.setOptimizationtask(_ot);
-        
-        
+
+        let _dr = new Driver();
+        _dr.setId(route.driverId);
+        request.setDriver(_dr);
+
+
         clientRoute.createOrUpdateRoute(request, {}, (err, response) => {
           resolve(response);
         });
