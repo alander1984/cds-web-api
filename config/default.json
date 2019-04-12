@@ -2,5 +2,5 @@
 
     "authAPITestEndpoint" : "http://192.168.1.105:8050",
     "authAPIendpoint" : "http://192.168.1.105:8050",
-    "backendRFPEndpoint" : "http://192.168.1.105:8060"
+    "backendRFPEndpoint" : "http://192.168.63.189:8088"
 }

@@ -60,6 +60,43 @@ module.exports = {
               tc.name = _tc.getName();
               route.transportcompany = tc;
             }
+            
+            var _routepoints = item.getRouterpointsList();
+            if(Object.keys(_routepoints).length !== 0) {
+                console.log('###WEB API GET ROUTE POINTS LIST');
+                var routepoints = [];
+                _routepoints.forEach(function(_rp, i, arr) {
+                   var routePoint = {};
+                   routePoint.id = _rp.getId();
+                   routePoint.arrivalTime = _rp.getArrivaltime();
+                   routePoint.pos = _rp.getPos();
+                   console.log(_rp.getDelivery().getLon());
+                   if(_rp.getDelivery()) {
+                       console.log('#### WEB API GET DELIVERY FOR ROUTE POINT');
+                       var delivery = {};
+                       var _delivery = _rp.getDelivery();
+                       console.log('###PARSE DELIVERY');
+                       delivery.id = _delivery.getId();
+                       delivery.lon = _delivery.getLon();
+                       
+                       delivery.lat = _delivery.getLat();
+                       delivery.city = _delivery.getCity();
+                       delivery.street = _delivery.getStreet();
+                       delivery.house = _delivery.getHouse();
+                       delivery.flat = _delivery.getFlat();
+                       delivery.entrance = _delivery.getEntrance();
+                       console.log(delivery);
+                       routePoint.delivery = delivery;
+                   }
+                   console.log('####ROUTE POINT');
+                   console.log(routePoint);
+                   routepoints.push(routePoint);
+                   console.log('###PUSH INTO ROUTEPOINTS');
+                });
+                route.routepoints = routepoints;
+                console.log('####END CYCLE');
+                console.log(route);
+            }
 
             //TODO implement
             //let _optTask = item.getOptimizationtask();
