@@ -1,5 +1,5 @@
 {
-    "backendAPITestEndpoint": "http://lmdev:33015",
-    "authAPIendpoint" : "http://192.168.63.159:8088",
-    "backendRFPEndpoint" : "http://192.168.63.159:8088"
+    "backendAPITestEndpoint": "http://10.80.36.147:30996",
+    "authAPIendpoint" : "http://10.80.36.147:30996",
+    "backendRFPEndpoint" : "http://192.168.63.245:8088"
 }
