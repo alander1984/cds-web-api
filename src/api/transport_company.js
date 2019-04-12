@@ -1,4 +1,4 @@
-const {TransportCompany, Vehicle, TransportCompanyAllResponse, EntityCreateResponse, EntityIdRequest, EntityDeleteResponse} = require(
+const {TransportCompany, Vehicle, Driver, TransportCompanyAllResponse, EntityCreateResponse, EntityIdRequest, EntityDeleteResponse} = require(
     '../grpc-generated/Transport_pb');
 const {Empty} = require('../grpc-generated/common_pb.js');
 var Config = require('Config');
@@ -18,19 +18,34 @@ module.exports = {
               var listTransportCompanies = [];
               var p = transportCompanies.getTransportcompaniesList();
               p.forEach(function (item, index, p) {
-                let tc = new Object();
+                let tc = {}
                 tc.id = item.getId();
                 tc.code = item.getCode();
                 tc.name = item.getName();
                 tc.vehicles = [];
                 let _vehicles = item.getVehiclesList();
                 _vehicles.forEach(function (item, index, _vehicles) {
-                  let vehicle = new Object();
+                  let vehicle = {}
                   vehicle.id = item.getId();
                   vehicle.registrationNumber = item.getRegistrationnumber();
                   vehicle.model = item.getModel();
                   vehicle.tonnage = item.getTonnage();
                   vehicle.capacity = item.getCapacity();
+
+                  vehicle.drivers = [];
+
+                  let _driversList = item.getDriversList();
+                  _driversList.forEach(function (item) {
+                    let driver = {};
+                    driver.id = item.getId();
+                    driver.surname = item.getSurname();
+                    driver.name = item.getName();
+                    driver.patronymic = item.getPatronymic();
+
+                    vehicle.drivers.push(driver);
+                  });
+
+
                   tc.vehicles.push(vehicle);
                 });
 
