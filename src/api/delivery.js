@@ -40,27 +40,7 @@ module.exports = {
                         delivery.house = item.getHouse();
                         delivery.entrance = item.getEntrance();
                         delivery.flat = item.getFlat();
-                        console.log("****** " + delivery.flat + "  " + delivery.lastUpdateUserName) ;
-                        /*
-                        delivery.items = [];
-                        let _delItems = item.getItemsList();
-                        _delItems.forEach(function(it, index, _delItems){
-                            let delitem = new Object();
-                                delitem.id = it.getId();
-                                delitem.productlmcode = it.getProductlmcode();
-                                delitem.productlmname = it.getProductlmname();
-                                delitem.weight = it.getWeight();
-                                delitem.volume = it.getVolume();
-                                delitem.width = it.getWidth();
-                                delitem.length = it.getLength();
-                                delitem.quantity = it.getQuantity();
-                                delitem.loadedquantity = it.getLoadedquantity();
-                                delitem.approvedquantity = it.getApprovedquantity();
-                                delitem.status = it.getStatus();
-                                delivery.items.push(delitem);
-                        });
-                        console.log("delivery.items SIZE " + delivery.items.length);
-                        */
+                        //console.log("****** " + delivery.flat + "  " + delivery.lastUpdateUserName) ;
                         delivery.storeId = item.getStore().getId();
                         delivery.storeType = item.getStore().getType();
                         delivery.storeName = item.getStore().getName();
@@ -94,6 +74,7 @@ module.exports = {
                             delitem.height = it.getHeight();
                             delitem.width = it.getWidth();
                             delitem.length = it.getLength();
+                            delitem.volume = it.getHeight() * it.getWidth() * it.getLength();
                             delitem.quantity = it.getQuantity();
                             delitem.loadedquantity = it.getLoadedquantity();
                             delitem.approvedquantity = it.getApprovedquantity();

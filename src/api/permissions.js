@@ -1,7 +1,7 @@
 const {Empty, Permission, PermissionAllResponse, EntityCreateResponse, EntityIdRequest, EntityDeleteResponse} = require('../grpc-generated/AuthEntity_pb.js');
 var Config = require('Config');
 const {PermissionServiceClient} = require('../grpc-generated/AuthEntity_grpc_web_pb.js');
-var clientPermission = new PermissionServiceClient(Config.backendAPITestEndpoint);
+var clientPermission = new PermissionServiceClient(Config.authAPIendpoint);
 
 module.exports = {
   Permissions: {

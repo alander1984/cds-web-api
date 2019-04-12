@@ -17,6 +17,8 @@ var Transport_pb = require('./Transport_pb.js');
 goog.object.extend(proto, Transport_pb);
 var Delivery_pb = require('./Delivery_pb.js');
 goog.object.extend(proto, Delivery_pb);
+var stores_pb = require('./stores_pb.js');
+goog.object.extend(proto, stores_pb);
 goog.exportSymbol('proto.OptimizationTask', null, global);
 goog.exportSymbol('proto.OptimizationTask.OptimizationTaskStatusEnum', null, global);
 goog.exportSymbol('proto.Route', null, global);
@@ -150,7 +152,8 @@ proto.Route.toObject = function(includeInstance, msg) {
     deliverydate: jspb.Message.getFieldWithDefault(msg, 4, ""),
     optimizationtask: (f = msg.getOptimizationtask()) && proto.OptimizationTask.toObject(includeInstance, f),
     vehicle: (f = msg.getVehicle()) && Transport_pb.Vehicle.toObject(includeInstance, f),
-    transportcompany: (f = msg.getTransportcompany()) && Transport_pb.TransportCompany.toObject(includeInstance, f)
+    transportcompany: (f = msg.getTransportcompany()) && Transport_pb.TransportCompany.toObject(includeInstance, f),
+    store: (f = msg.getStore()) && stores_pb.Store.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -218,6 +221,11 @@ proto.Route.deserializeBinaryFromReader = function(msg, reader) {
       var value = new Transport_pb.TransportCompany;
       reader.readMessage(value,Transport_pb.TransportCompany.deserializeBinaryFromReader);
       msg.setTransportcompany(value);
+      break;
+    case 8:
+      var value = new stores_pb.Store;
+      reader.readMessage(value,stores_pb.Store.deserializeBinaryFromReader);
+      msg.setStore(value);
       break;
     default:
       reader.skipField();
@@ -299,6 +307,14 @@ proto.Route.serializeBinaryToWriter = function(message, writer) {
       7,
       f,
       Transport_pb.TransportCompany.serializeBinaryToWriter
+    );
+  }
+  f = message.getStore();
+  if (f != null) {
+    writer.writeMessage(
+      8,
+      f,
+      stores_pb.Store.serializeBinaryToWriter
     );
   }
 };
@@ -479,6 +495,39 @@ proto.Route.prototype.clearTransportcompany = function() {
  */
 proto.Route.prototype.hasTransportcompany = function() {
   return jspb.Message.getField(this, 7) != null;
+};
+
+
+/**
+ * optional Store store = 8;
+ * @return {?proto.Store}
+ */
+proto.Route.prototype.getStore = function() {
+  return /** @type{?proto.Store} */ (
+    jspb.Message.getWrapperField(this, stores_pb.Store, 8));
+};
+
+
+/** @param {?proto.Store|undefined} value */
+proto.Route.prototype.setStore = function(value) {
+  jspb.Message.setWrapperField(this, 8, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ */
+proto.Route.prototype.clearStore = function() {
+  this.setStore(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.Route.prototype.hasStore = function() {
+  return jspb.Message.getField(this, 8) != null;
 };
 
 
