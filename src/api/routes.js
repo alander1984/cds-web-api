@@ -108,7 +108,10 @@ module.exports = {
             let store = {};
             store.id = _store.getId();
             store.name = _store.getName();
+            store.lon = _store.getLon();
+            store.lat = _store.getLat();
             route.store = store;
+            
 
             let _driver = item.getDriver();
             let driver = {};
