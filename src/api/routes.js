@@ -2,6 +2,7 @@ const {Route, RoutePoint, OptimizationTask, RouteAllResponse} = require(
     '../grpc-generated/routes_pb.js');
 const {EntityIdRequest, Vehicle, Driver, TransportCompany} = require(
     '../grpc-generated/Transport_pb.js');
+const {Delivery} = require('../grpc-generated/Delivery_pb.js');
 const {Empty} = require(
     '../grpc-generated/common_pb.js');
 const {Store} = require(
@@ -60,7 +61,7 @@ module.exports = {
               tc.name = _tc.getName();
               route.transportcompany = tc;
             }
-            
+
             var _routepoints = item.getRouterpointsList();
             if(Object.keys(_routepoints).length !== 0) {
                 console.log('###WEB API GET ROUTE POINTS LIST');
@@ -78,7 +79,7 @@ module.exports = {
                        console.log('###PARSE DELIVERY');
                        delivery.id = _delivery.getId();
                        delivery.lon = _delivery.getLon();
-                       
+
                        delivery.lat = _delivery.getLat();
                        delivery.city = _delivery.getCity();
                        delivery.street = _delivery.getStreet();
@@ -111,7 +112,7 @@ module.exports = {
             store.lon = _store.getLon();
             store.lat = _store.getLat();
             route.store = store;
-            
+
 
             let _driver = item.getDriver();
             let driver = {};
@@ -141,27 +142,52 @@ module.exports = {
         request.setName(route.name);
         request.setDeliverydate(route.deliveryDate);
 
-        let vehicle = new Vehicle();
-        vehicle.setId(route.vehicleId);
-        request.setVehicle(vehicle);
+        console.log("route.vehicleId:" + route.vehicleId);
+        if (route.vehicleId !== undefined) {
+          let vehicle = new Vehicle();
+          vehicle.setId(route.vehicleId);
+          request.setVehicle(vehicle);
+        }
 
-        let _tc = new TransportCompany();
-        _tc.setId(route.transportcompanyId);
-        request.setTransportcompany(_tc);
+        if (route.transportcompanyId !== undefined) {
+          let _tc = new TransportCompany();
+          _tc.setId(route.transportcompanyId);
+          request.setTransportcompany(_tc);
+        }
 
-        //TODO add Store import
-        let _st = new Store();
-        _st.setId(route.storeid);
-        request.setStore(_st);
+        if (route.storeid !== undefined) {
+          let _st = new Store();
+          _st.setId(route.storeid);
+          request.setStore(_st);
+        }
 
         // let _ot = new OptimizationTask();
         // _ot.setId(route.optimizationtask.id);
         // request.setOptimizationtask(_ot);
 
-        let _dr = new Driver();
-        _dr.setId(route.driverId);
-        request.setDriver(_dr);
+        if (route.driverId !== undefined) {
+          let _dr = new Driver();
+          _dr.setId(route.driverId);
+          request.setDriver(_dr);
+        }
 
+        if (route.routerPoints !== undefined) {
+
+          let _routesPoints = [];
+          let p = route.routerPoints;
+          p.forEach(function (item, index, p) {
+            let rp = new RoutePoint();
+            rp.setArrivaltime(item.arrivalTime);
+            rp.setPos(item.pos);
+
+            let _delivery = new Delivery();
+            _delivery.setId(item.deliveryId);
+            rp.setDelivery(_delivery);
+
+            _routesPoints.push(rp);
+          });
+          request.setRouterpointsList(_routesPoints);
+        }
 
         clientRoute.createOrUpdateRoute(request, {}, (err, response) => {
           resolve(response);
