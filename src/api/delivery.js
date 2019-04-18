@@ -40,6 +40,19 @@ module.exports = {
                         delivery.house = item.getHouse();
                         delivery.entrance = item.getEntrance();
                         delivery.flat = item.getFlat();
+                        delivery.fullName = item.getFullname();
+                        delivery.external = item.getExternal();
+                        delivery.zone = item.getZone();
+                        delivery.metroStation = item.getMetrostation();
+                        delivery.floor = item.getFloor();
+                        delivery.company = item.getCompany();
+                        delivery.phone = item.getPhone();
+                        delivery.phoneSecondary = item.getPhonesecondary();
+                        delivery.email = item.getEmail();
+                        delivery.unloadType = item.getUnloadtype();
+                        delivery.paymentStatus = item.getPaymentstatus();
+                        delivery.paper = item.getPaper();
+                        delivery.consignee = item.getConsignee();
                         //console.log("****** " + delivery.flat + "  " + delivery.lastUpdateUserName) ;
                         delivery.storeId = item.getStore().getId();
                         delivery.storeType = item.getStore().getType();
@@ -51,7 +64,7 @@ module.exports = {
                         delivery.storeComment = item.getStore().getComment();
                         listDeliveries.push(delivery);
                     });
-                    console.log(JSON.stringify(listDeliveries));
+                    //console.log(JSON.stringify(listDeliveries));
                     resolve(listDeliveries);
                 });
             });
@@ -62,7 +75,7 @@ module.exports = {
                 request.setId(id);
                 clientDelivery.readAllDeliveryItemForDeliveryById(request, {}, (err, delivery) =>{
                     var d = delivery.getItemsList();
-                    console.log(JSON.stringify(d));
+                    //console.log(JSON.stringify(d));
                     var items = [];
                     
                     d.forEach(function(it, index, d){

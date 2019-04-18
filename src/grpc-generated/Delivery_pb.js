@@ -195,7 +195,20 @@ proto.Delivery.toObject = function(includeInstance, msg) {
     house: jspb.Message.getFieldWithDefault(msg, 15, ""),
     entrance: jspb.Message.getFieldWithDefault(msg, 16, ""),
     flat: jspb.Message.getFieldWithDefault(msg, 17, ""),
-    store: (f = msg.getStore()) && stores_pb.Store.toObject(includeInstance, f)
+    store: (f = msg.getStore()) && stores_pb.Store.toObject(includeInstance, f),
+    fullname: jspb.Message.getFieldWithDefault(msg, 19, ""),
+    external: jspb.Message.getFieldWithDefault(msg, 20, ""),
+    zone: jspb.Message.getFieldWithDefault(msg, 21, ""),
+    metrostation: jspb.Message.getFieldWithDefault(msg, 22, ""),
+    floor: jspb.Message.getFieldWithDefault(msg, 23, ""),
+    company: jspb.Message.getFieldWithDefault(msg, 24, ""),
+    phone: jspb.Message.getFieldWithDefault(msg, 25, ""),
+    phonesecondary: jspb.Message.getFieldWithDefault(msg, 26, ""),
+    email: jspb.Message.getFieldWithDefault(msg, 27, ""),
+    unloadtype: jspb.Message.getFieldWithDefault(msg, 28, ""),
+    paymentstatus: jspb.Message.getFieldWithDefault(msg, 29, ""),
+    paper: jspb.Message.getFieldWithDefault(msg, 30, ""),
+    consignee: jspb.Message.getFieldWithDefault(msg, 31, "")
   };
 
   if (includeInstance) {
@@ -306,6 +319,58 @@ proto.Delivery.deserializeBinaryFromReader = function(msg, reader) {
       var value = new stores_pb.Store;
       reader.readMessage(value,stores_pb.Store.deserializeBinaryFromReader);
       msg.setStore(value);
+      break;
+    case 19:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setFullname(value);
+      break;
+    case 20:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setExternal(value);
+      break;
+    case 21:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setZone(value);
+      break;
+    case 22:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMetrostation(value);
+      break;
+    case 23:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setFloor(value);
+      break;
+    case 24:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCompany(value);
+      break;
+    case 25:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPhone(value);
+      break;
+    case 26:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPhonesecondary(value);
+      break;
+    case 27:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setEmail(value);
+      break;
+    case 28:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setUnloadtype(value);
+      break;
+    case 29:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPaymentstatus(value);
+      break;
+    case 30:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPaper(value);
+      break;
+    case 31:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setConsignee(value);
       break;
     default:
       reader.skipField();
@@ -463,6 +528,97 @@ proto.Delivery.serializeBinaryToWriter = function(message, writer) {
       18,
       f,
       stores_pb.Store.serializeBinaryToWriter
+    );
+  }
+  f = message.getFullname();
+  if (f.length > 0) {
+    writer.writeString(
+      19,
+      f
+    );
+  }
+  f = message.getExternal();
+  if (f.length > 0) {
+    writer.writeString(
+      20,
+      f
+    );
+  }
+  f = message.getZone();
+  if (f.length > 0) {
+    writer.writeString(
+      21,
+      f
+    );
+  }
+  f = message.getMetrostation();
+  if (f.length > 0) {
+    writer.writeString(
+      22,
+      f
+    );
+  }
+  f = message.getFloor();
+  if (f.length > 0) {
+    writer.writeString(
+      23,
+      f
+    );
+  }
+  f = message.getCompany();
+  if (f.length > 0) {
+    writer.writeString(
+      24,
+      f
+    );
+  }
+  f = message.getPhone();
+  if (f.length > 0) {
+    writer.writeString(
+      25,
+      f
+    );
+  }
+  f = message.getPhonesecondary();
+  if (f.length > 0) {
+    writer.writeString(
+      26,
+      f
+    );
+  }
+  f = message.getEmail();
+  if (f.length > 0) {
+    writer.writeString(
+      27,
+      f
+    );
+  }
+  f = message.getUnloadtype();
+  if (f.length > 0) {
+    writer.writeString(
+      28,
+      f
+    );
+  }
+  f = message.getPaymentstatus();
+  if (f.length > 0) {
+    writer.writeString(
+      29,
+      f
+    );
+  }
+  f = message.getPaper();
+  if (f.length > 0) {
+    writer.writeString(
+      30,
+      f
+    );
+  }
+  f = message.getConsignee();
+  if (f.length > 0) {
+    writer.writeString(
+      31,
+      f
     );
   }
 };
@@ -789,6 +945,201 @@ proto.Delivery.prototype.clearStore = function() {
  */
 proto.Delivery.prototype.hasStore = function() {
   return jspb.Message.getField(this, 18) != null;
+};
+
+
+/**
+ * optional string fullName = 19;
+ * @return {string}
+ */
+proto.Delivery.prototype.getFullname = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 19, ""));
+};
+
+
+/** @param {string} value */
+proto.Delivery.prototype.setFullname = function(value) {
+  jspb.Message.setProto3StringField(this, 19, value);
+};
+
+
+/**
+ * optional string external = 20;
+ * @return {string}
+ */
+proto.Delivery.prototype.getExternal = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 20, ""));
+};
+
+
+/** @param {string} value */
+proto.Delivery.prototype.setExternal = function(value) {
+  jspb.Message.setProto3StringField(this, 20, value);
+};
+
+
+/**
+ * optional string zone = 21;
+ * @return {string}
+ */
+proto.Delivery.prototype.getZone = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 21, ""));
+};
+
+
+/** @param {string} value */
+proto.Delivery.prototype.setZone = function(value) {
+  jspb.Message.setProto3StringField(this, 21, value);
+};
+
+
+/**
+ * optional string metroStation = 22;
+ * @return {string}
+ */
+proto.Delivery.prototype.getMetrostation = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 22, ""));
+};
+
+
+/** @param {string} value */
+proto.Delivery.prototype.setMetrostation = function(value) {
+  jspb.Message.setProto3StringField(this, 22, value);
+};
+
+
+/**
+ * optional string floor = 23;
+ * @return {string}
+ */
+proto.Delivery.prototype.getFloor = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 23, ""));
+};
+
+
+/** @param {string} value */
+proto.Delivery.prototype.setFloor = function(value) {
+  jspb.Message.setProto3StringField(this, 23, value);
+};
+
+
+/**
+ * optional string company = 24;
+ * @return {string}
+ */
+proto.Delivery.prototype.getCompany = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 24, ""));
+};
+
+
+/** @param {string} value */
+proto.Delivery.prototype.setCompany = function(value) {
+  jspb.Message.setProto3StringField(this, 24, value);
+};
+
+
+/**
+ * optional string phone = 25;
+ * @return {string}
+ */
+proto.Delivery.prototype.getPhone = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 25, ""));
+};
+
+
+/** @param {string} value */
+proto.Delivery.prototype.setPhone = function(value) {
+  jspb.Message.setProto3StringField(this, 25, value);
+};
+
+
+/**
+ * optional string phoneSecondary = 26;
+ * @return {string}
+ */
+proto.Delivery.prototype.getPhonesecondary = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 26, ""));
+};
+
+
+/** @param {string} value */
+proto.Delivery.prototype.setPhonesecondary = function(value) {
+  jspb.Message.setProto3StringField(this, 26, value);
+};
+
+
+/**
+ * optional string email = 27;
+ * @return {string}
+ */
+proto.Delivery.prototype.getEmail = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 27, ""));
+};
+
+
+/** @param {string} value */
+proto.Delivery.prototype.setEmail = function(value) {
+  jspb.Message.setProto3StringField(this, 27, value);
+};
+
+
+/**
+ * optional string unloadType = 28;
+ * @return {string}
+ */
+proto.Delivery.prototype.getUnloadtype = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 28, ""));
+};
+
+
+/** @param {string} value */
+proto.Delivery.prototype.setUnloadtype = function(value) {
+  jspb.Message.setProto3StringField(this, 28, value);
+};
+
+
+/**
+ * optional string paymentStatus = 29;
+ * @return {string}
+ */
+proto.Delivery.prototype.getPaymentstatus = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 29, ""));
+};
+
+
+/** @param {string} value */
+proto.Delivery.prototype.setPaymentstatus = function(value) {
+  jspb.Message.setProto3StringField(this, 29, value);
+};
+
+
+/**
+ * optional string paper = 30;
+ * @return {string}
+ */
+proto.Delivery.prototype.getPaper = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 30, ""));
+};
+
+
+/** @param {string} value */
+proto.Delivery.prototype.setPaper = function(value) {
+  jspb.Message.setProto3StringField(this, 30, value);
+};
+
+
+/**
+ * optional string consignee = 31;
+ * @return {string}
+ */
+proto.Delivery.prototype.getConsignee = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 31, ""));
+};
+
+
+/** @param {string} value */
+proto.Delivery.prototype.setConsignee = function(value) {
+  jspb.Message.setProto3StringField(this, 31, value);
 };
 
 
