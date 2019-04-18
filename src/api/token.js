@@ -33,4 +33,3 @@ if ($(location).attr("href").indexOf("/login")===-1) {
     }
 }); 
 }
-

@@ -2,6 +2,7 @@ const {Route, RoutePoint, OptimizationTask, RouteAllResponse} = require(
     '../grpc-generated/routes_pb.js');
 const {EntityIdRequest, Vehicle, Driver, TransportCompany} = require(
     '../grpc-generated/Transport_pb.js');
+const {Delivery} = require('../grpc-generated/Delivery_pb.js');
 const {Empty} = require(
     '../grpc-generated/common_pb.js');
 const {Store} = require(
@@ -61,6 +62,43 @@ module.exports = {
               route.transportcompany = tc;
             }
 
+            var _routepoints = item.getRouterpointsList();
+            if(Object.keys(_routepoints).length !== 0) {
+                console.log('###WEB API GET ROUTE POINTS LIST');
+                var routepoints = [];
+                _routepoints.forEach(function(_rp, i, arr) {
+                   var routePoint = {};
+                   routePoint.id = _rp.getId();
+                   routePoint.arrivalTime = _rp.getArrivaltime();
+                   routePoint.pos = _rp.getPos();
+                   console.log(_rp.getDelivery().getLon());
+                   if(_rp.getDelivery()) {
+                       console.log('#### WEB API GET DELIVERY FOR ROUTE POINT');
+                       var delivery = {};
+                       var _delivery = _rp.getDelivery();
+                       console.log('###PARSE DELIVERY');
+                       delivery.id = _delivery.getId();
+                       delivery.lon = _delivery.getLon();
+
+                       delivery.lat = _delivery.getLat();
+                       delivery.city = _delivery.getCity();
+                       delivery.street = _delivery.getStreet();
+                       delivery.house = _delivery.getHouse();
+                       delivery.flat = _delivery.getFlat();
+                       delivery.entrance = _delivery.getEntrance();
+                       console.log(delivery);
+                       routePoint.delivery = delivery;
+                   }
+                   console.log('####ROUTE POINT');
+                   console.log(routePoint);
+                   routepoints.push(routePoint);
+                   console.log('###PUSH INTO ROUTEPOINTS');
+                });
+                route.routepoints = routepoints;
+                console.log('####END CYCLE');
+                console.log(route);
+            }
+
             //TODO implement
             //let _optTask = item.getOptimizationtask();
             //if (Object.keys(_optTask).length !== 0 && _optTask.constructor !== Object) {
@@ -71,11 +109,22 @@ module.exports = {
             let store = {};
             store.id = _store.getId();
             store.name = _store.getName();
-            console.log("Store is : " + store.id + " - " + store.name);
+            store.lon = _store.getLon();
+            store.lat = _store.getLat();
             route.store = store;
 
-            console.log("Item of getDriversList - " + item);
+
+            let _driver = item.getDriver();
+            let driver = {};
+            driver.id = _driver.getId();
+            driver.name = _driver.getName();
+            driver.surname = _driver.getSurname();
+            driver.patronymic = _driver.getPatronymic();
+
+            route.driver = driver;
+
             listRoutes.push(route);
+
           });
           resolve(listRoutes);
         });
@@ -89,28 +138,57 @@ module.exports = {
         if (route.id) {
           request.setId(route.id);
         }
-        
+
         request.setName(route.name);
         request.setDeliverydate(route.deliveryDate);
 
-        let vehicle = new Vehicle();
-        vehicle.setId(route.vehicleId);
-        request.setVehicle(vehicle);
+        console.log("route.vehicleId:" + route.vehicleId);
+        if (route.vehicleId !== undefined) {
+          let vehicle = new Vehicle();
+          vehicle.setId(route.vehicleId);
+          request.setVehicle(vehicle);
+        }
 
-        let _tc = new TransportCompany();
-        _tc.setId(route.transportcompanyId);
-        request.setTransportcompany(_tc);
+        if (route.transportcompanyId !== undefined) {
+          let _tc = new TransportCompany();
+          _tc.setId(route.transportcompanyId);
+          request.setTransportcompany(_tc);
+        }
 
-        //TODO add Store import
-        let _st = new Store();
-        _st.setId(route.storeid);
-        request.setStore(_st);
-        
+        if (route.storeid !== undefined) {
+          let _st = new Store();
+          _st.setId(route.storeid);
+          request.setStore(_st);
+        }
+
         // let _ot = new OptimizationTask();
         // _ot.setId(route.optimizationtask.id);
         // request.setOptimizationtask(_ot);
-        
-        
+
+        if (route.driverId !== undefined) {
+          let _dr = new Driver();
+          _dr.setId(route.driverId);
+          request.setDriver(_dr);
+        }
+
+        if (route.routerPoints !== undefined) {
+
+          let _routesPoints = [];
+          let p = route.routerPoints;
+          p.forEach(function (item, index, p) {
+            let rp = new RoutePoint();
+            rp.setArrivaltime(item.arrivalTime);
+            rp.setPos(item.pos);
+
+            let _delivery = new Delivery();
+            _delivery.setId(item.deliveryId);
+            rp.setDelivery(_delivery);
+
+            _routesPoints.push(rp);
+          });
+          request.setRouterpointsList(_routesPoints);
+        }
+
         clientRoute.createOrUpdateRoute(request, {}, (err, response) => {
           resolve(response);
         });
