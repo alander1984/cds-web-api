@@ -1,4 +1,4 @@
-const {Delivery, DeliveryItem, User, DeliveryAllResponse, DeliveryIdRequest, DeliveryItemAllResponse} = require('../grpc-generated/Delivery_pb.js');
+const {Delivery, DeliveryItem, User, DeliveryAllResponse, DeliveryIdRequest, DeliveryItemAllResponse, DeliveryStatusChangeRequest,DeliveryChangeStatusResponse} = require('../grpc-generated/Delivery_pb.js');
 const {Empty} = require('../grpc-generated/common_pb.js');
 const {Store} = require('../grpc-generated/stores_pb.js');
 var Config = require('Config');
@@ -99,6 +99,18 @@ module.exports = {
                 });
             });
 
+        },
+        changeStatusDelivery: function (request) {
+            return new Promise((resolve, reject) => {
+                let listDeliveryId = request.list;
+                let backendRequest = new DeliveryStatusChangeRequest();
+                // Use int number for setting status. See DeliveryStatusEnum in Delivery.proto for find it.
+                backendRequest.setNewstatus(request.status);
+                backendRequest.setListidList(request.list);
+                clientDelivery.changeStatusDelivery(backendRequest, {}, (err, response) => {
+                    resolve(response);
+                })
+            });
         }
     }
 };
