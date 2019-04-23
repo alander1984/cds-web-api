@@ -187,5 +187,61 @@ proto.DeliveryServicePromiseClient.prototype.readAllDeliveryItemForDeliveryById 
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.DeliveryStatusChangeRequest,
+ *   !proto.DeliveryChangeStatusResponse>}
+ */
+const methodInfo_DeliveryService_changeStatusDelivery = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.DeliveryChangeStatusResponse,
+  /** @param {!proto.DeliveryStatusChangeRequest} request */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.DeliveryChangeStatusResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.DeliveryStatusChangeRequest} request The
+ *     request proto
+ * @param {!Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.Error, ?proto.DeliveryChangeStatusResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.DeliveryChangeStatusResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.DeliveryServiceClient.prototype.changeStatusDelivery =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/DeliveryService/changeStatusDelivery',
+      request,
+      metadata,
+      methodInfo_DeliveryService_changeStatusDelivery,
+      callback);
+};
+
+
+/**
+ * @param {!proto.DeliveryStatusChangeRequest} request The
+ *     request proto
+ * @param {!Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.DeliveryChangeStatusResponse>}
+ *     The XHR Node Readable Stream
+ */
+proto.DeliveryServicePromiseClient.prototype.changeStatusDelivery =
+    function(request, metadata) {
+  return new Promise((resolve, reject) => {
+    this.delegateClient_.changeStatusDelivery(
+      request, metadata, (error, response) => {
+        error ? reject(error) : resolve(response);
+      });
+  });
+};
+
+
 module.exports = proto;
 
