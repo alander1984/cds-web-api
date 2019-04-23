@@ -1,4 +1,4 @@
-const {Vehicle, VehicleAllResponse, EntityCreateResponse, EntityIdRequest, EntityDeleteResponse} = require('../grpc-generated/Transport_pb');
+const {Vehicle, Driver, VehicleAllResponse, EntityCreateResponse, EntityIdRequest, EntityDeleteResponse} = require('../grpc-generated/Transport_pb');
 const {Empty} = require('../grpc-generated/common_pb.js');
 var Config = require('Config');
 const {VehicleServiceClient} = require('../grpc-generated/Transport_grpc_web_pb');
@@ -20,6 +20,20 @@ module.exports = {
             vehicle.model = item.getModel();
             vehicle.tonnage = item.getTonnage();
             vehicle.capacity = item.getCapacity();
+            vehicle.drivers = [];
+            var d = item.getDriversList();
+            d.forEach(function(it, i, d){
+                 let driver = new Object();
+                 driver.id = it.getId();
+                 driver.surname = it.getSurname();
+                 driver.name = it.getName();
+                 driver.patronymic = it.getPatronymic();
+                 driver.birthday = it.getBirthday();
+                 driver.login = it.getLogin();
+                 driver.password = it.getPassword();
+                 //driver.vehicles = [];
+                 vehicle.drivers.push(driver);
+            });
             console.log("Item of getVehiclesList - " + item);
             listVehicles.push(vehicle);
           });
@@ -37,9 +51,24 @@ module.exports = {
         request.setModel(vehicle.model);
         request.setTonnage(vehicle.tonnage);
         request.setCapacity(vehicle.capacity);
+        var drivers = [];
+        var p = vehicle.drivers;
+        p.forEach(function (item, index, p) {
+            let driver = new Driver();
+            if (item.id) driver.setId(item.id);
+            driver.setName(item.name);
+            driver.setSurname(item.surname);
+            driver.setPatronymic(item.patronymic);
+            driver.setLogin(item.login);
+            driver.setBirthday(item.birthday);
+            driver.setPassword(item.password);
+            drivers.push(driver);
+        });
+
+        request.setDriversList(drivers);
         // console.log("REQUEST.NAME " + request.getName());
         // console.log("REQUEST.SURNAME  " + request.getSurname());
-        // console.log("REQUEST.PATRONYMIC  " + request.getPatronymic());
+         console.log("REQUEST.Drivers  " + JSON.stringify(request.getDriversList()));
         clientVehicle.createOrUpdateVehicle(request, {}, (err, response) => {
           resolve(response);
         });
