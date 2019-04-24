@@ -171,14 +171,15 @@ module.exports = {
           request.setDriver(_dr);
         }
 
-        if (route.routerPoints !== undefined) {
-
+        if (route.routepoints !== undefined) {
+            console.log('SET ROUTE POINTS FOR CREATE_UPDATE IN BUNDLE JS');
           let _routesPoints = [];
-          let p = route.routerPoints;
+          let p = route.routepoints;
           p.forEach(function (item, index, p) {
             let rp = new RoutePoint();
             rp.setArrivaltime(item.arrivalTime);
             rp.setPos(item.pos);
+            rp.setId(item.id);
 
             let _delivery = new Delivery();
             _delivery.setId(item.deliveryId);
