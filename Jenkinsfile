@@ -39,7 +39,7 @@ node ('internet-enabled') {
             }
             def workspace = pwd()
             stage ('NPM Build') {
-                docker.image('docker.art.lmru.tech/node:8-alpine').inside('-v "${workspace}":/opt/code -w /opt/code') {
+                docker.image('docker.art.lmru.tech/node:8-alpine').inside() {
                     sh "npm install webpack"
                     sh "npm run build-lmdev --prefix /projects/cds-web-api"
                 }
