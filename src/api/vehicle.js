@@ -1,4 +1,4 @@
-const {Vehicle, Driver, VehicleAllResponse, EntityCreateResponse, EntityIdRequest, EntityDeleteResponse} = require('../grpc-generated/Transport_pb');
+const {Vehicle, Driver, TransportCompany, VehicleAllResponse, EntityCreateResponse, EntityIdRequest, EntityDeleteResponse} = require('../grpc-generated/Transport_pb');
 const {Empty} = require('../grpc-generated/common_pb.js');
 var Config = require('Config');
 const {VehicleServiceClient} = require('../grpc-generated/Transport_grpc_web_pb');
@@ -34,6 +34,15 @@ module.exports = {
                  //driver.vehicles = [];
                  vehicle.drivers.push(driver);
             });
+            vehicle.transportCompanies = [];
+            var tc = item.getTransportcompaniesList();
+            tc.forEach(function(it2, i2, tc){
+                let t = new Object();
+                t.id = it2.getId();
+                t.code = it2.getCode();
+                t.name = it2.getName();
+                vehicle.transportCompanies.push(t);
+            });
             console.log("Item of getVehiclesList - " + item);
             listVehicles.push(vehicle);
           });
@@ -66,9 +75,20 @@ module.exports = {
         });
 
         request.setDriversList(drivers);
+        
+        var transportCompanies = [];
+        var tC = vehicle.transportCompanies;
+        tC.forEach(function (item, index, tC){
+            let t = new TransportCompany();
+            if (item.id) t.setId(item.id);
+            t.setCode(item.code);
+            t.setName(item.name);
+            transportCompanies.push(t);
+        });
+        request.setTransportcompaniesList(transportCompanies);
         // console.log("REQUEST.NAME " + request.getName());
         // console.log("REQUEST.SURNAME  " + request.getSurname());
-         console.log("REQUEST.Drivers  " + JSON.stringify(request.getDriversList()));
+        // console.log("REQUEST.Drivers  " + JSON.stringify(request.getDriversList()));
         clientVehicle.createOrUpdateVehicle(request, {}, (err, response) => {
           resolve(response);
         });

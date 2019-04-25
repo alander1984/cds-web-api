@@ -560,7 +560,7 @@ proto.Driver.prototype.clearVehiclesList = function() {
  * @private {!Array<number>}
  * @const
  */
-proto.Vehicle.repeatedFields_ = [6];
+proto.Vehicle.repeatedFields_ = [6,7];
 
 
 
@@ -598,7 +598,8 @@ proto.Vehicle.toObject = function(includeInstance, msg) {
     capacity: jspb.Message.getFieldWithDefault(msg, 5, ""),
     driversList: jspb.Message.toObjectList(msg.getDriversList(),
     proto.Driver.toObject, includeInstance),
-    transportcompany: (f = msg.getTransportcompany()) && proto.TransportCompany.toObject(includeInstance, f)
+    transportcompaniesList: jspb.Message.toObjectList(msg.getTransportcompaniesList(),
+    proto.TransportCompany.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -663,7 +664,7 @@ proto.Vehicle.deserializeBinaryFromReader = function(msg, reader) {
     case 7:
       var value = new proto.TransportCompany;
       reader.readMessage(value,proto.TransportCompany.deserializeBinaryFromReader);
-      msg.setTransportcompany(value);
+      msg.addTransportcompanies(value);
       break;
     default:
       reader.skipField();
@@ -737,9 +738,9 @@ proto.Vehicle.serializeBinaryToWriter = function(message, writer) {
       proto.Driver.serializeBinaryToWriter
     );
   }
-  f = message.getTransportcompany();
-  if (f != null) {
-    writer.writeMessage(
+  f = message.getTransportcompaniesList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
       7,
       f,
       proto.TransportCompany.serializeBinaryToWriter
@@ -858,35 +859,36 @@ proto.Vehicle.prototype.clearDriversList = function() {
 
 
 /**
- * optional TransportCompany transportCompany = 7;
- * @return {?proto.TransportCompany}
+ * repeated TransportCompany transportCompanies = 7;
+ * @return {!Array<!proto.TransportCompany>}
  */
-proto.Vehicle.prototype.getTransportcompany = function() {
-  return /** @type{?proto.TransportCompany} */ (
-    jspb.Message.getWrapperField(this, proto.TransportCompany, 7));
+proto.Vehicle.prototype.getTransportcompaniesList = function() {
+  return /** @type{!Array<!proto.TransportCompany>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.TransportCompany, 7));
 };
 
 
-/** @param {?proto.TransportCompany|undefined} value */
-proto.Vehicle.prototype.setTransportcompany = function(value) {
-  jspb.Message.setWrapperField(this, 7, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- */
-proto.Vehicle.prototype.clearTransportcompany = function() {
-  this.setTransportcompany(undefined);
+/** @param {!Array<!proto.TransportCompany>} value */
+proto.Vehicle.prototype.setTransportcompaniesList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 7, value);
 };
 
 
 /**
- * Returns whether this field is set.
- * @return {boolean}
+ * @param {!proto.TransportCompany=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.TransportCompany}
  */
-proto.Vehicle.prototype.hasTransportcompany = function() {
-  return jspb.Message.getField(this, 7) != null;
+proto.Vehicle.prototype.addTransportcompanies = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 7, opt_value, proto.TransportCompany, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ */
+proto.Vehicle.prototype.clearTransportcompaniesList = function() {
+  this.setTransportcompaniesList([]);
 };
 
 
