@@ -15,13 +15,46 @@
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
     <destDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${project.version}</destDir>
+    <proto.version>0.0.1-SNAPSHOT</proto.version>
   </properties>
 
   <dependencies>
+      <dependency>
+          <groupId>tech.lmru</groupId>
+          <artifactId>cds-proto</artifactId>
+          <version>${proto.version}</version>
+      </dependency>
   </dependencies>
 
   <build>
     <plugins>
+        <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>3.1.1</version>
+        <executions>
+            <execution>
+            <id>unpack</id>
+            <phase>validate</phase>
+            <goals>
+                <goal>unpack</goal>
+            </goals>
+            <configuration>
+                <artifactItems>
+                    <artifactItem>
+                        <groupId>tech.lmru</groupId>
+                        <artifactId>cds-proto</artifactId>
+                        <version>${proto.version}</version>
+                        <type>jar</type>
+                        <includes>**/*.proto</includes>
+                        <excludes>**/*.class</excludes>
+                        <outputDirectory>${project.basedir}/src/proto</outputDirectory>
+                    </artifactItem>
+                </artifactItems>
+            </configuration>
+            </execution>
+        </executions>
+        </plugin>
         <plugin>
             <artifactId>maven-antrun-plugin</artifactId>
             <version>1.7</version>
